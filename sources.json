@@ -1,14 +1,45 @@
 {
+  "retain_days": 90,
   "epg_output": "epg.xml.gz",
   "epg_public_url": "https://raw.githubusercontent.com/tampam3u-dev/TAMPAM3U/main/epg.xml.gz",
-  "extra_epg": ["https://iptv-org.github.io/epg/guides/us.xml"],
+  "extra_epg": [
+    "https://iptv-org.github.io/epg/guides/us.xml"
+  ],
   "sources": [
-    {"name": "Pluto TV", "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/plutotv_us.m3u", "priority": 1},
-    {"name": "Samsung TV Plus", "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/samsungtvplus_us.m3u", "priority": 2},
-    {"name": "Plex", "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/plex_us.m3u", "priority": 3},
-    {"name": "Roku Channel", "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/roku_all.m3u", "priority": 4},
-    {"name": "Stirr", "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/stirr_all.m3u", "priority": 5},
-    {"name": "Tubi", "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/tubi_all.m3u", "priority": 6},
-    {"name": "iptv-org US", "url": "https://iptv-org.github.io/iptv/countries/us.m3u", "priority": 7}
+    {
+      "name": "Pluto TV",
+      "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/plutotv_us.m3u",
+      "priority": 1
+    },
+    {
+      "name": "Samsung TV Plus",
+      "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/samsungtvplus_us.m3u",
+      "priority": 2
+    },
+    {
+      "name": "Plex",
+      "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/plex_us.m3u",
+      "priority": 3
+    },
+    {
+      "name": "Roku Channel",
+      "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/roku_all.m3u",
+      "priority": 4
+    },
+    {
+      "name": "Stirr",
+      "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/stirr_all.m3u",
+      "priority": 5
+    },
+    {
+      "name": "Tubi",
+      "url": "https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/main/playlists/tubi_all.m3u",
+      "priority": 6
+    },
+    {
+      "name": "iptv-org US",
+      "url": "https://iptv-org.github.io/iptv/countries/us.m3u",
+      "priority": 7
+    }
   ]
 }

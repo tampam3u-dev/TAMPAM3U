@@ -21,9 +21,10 @@ https://raw.githubusercontent.com/tampam3u-dev/TAMPAM3U/main/tampam3u.m3u
 ## How it works
 
 - `sources.json` lists the playlists to merge. Add or remove sources there.
-- `build_playlist.py` downloads them, removes duplicates, drops dead links, sorts channels into groups (Local 100s, News 200s, Sports 300s, Movies 400s, Kids 500s, Music 600s, Entertainment 700s), numbers them, and writes `tampam3u.m3u`.
+- `build_playlist.py` downloads them, removes duplicates, drops dead links, sorts channels into groups (Local 1000s, News 2000s, Sports 3000s, Movies 4000s, Kids 5000s, Music 6000s, Entertainment 7000s), gives each a permanent channel number, and writes `tampam3u.m3u`.
 - It also collects the guide links the source playlists declare, merges them (keeping only channels in the playlist) and writes `epg.xml.gz`, which gives Kodi its Plex-style TV Guide grid.
-- `.github/workflows/update.yml` runs the script daily and commits both files. You can also run it manually from the Actions tab.
+- `channel_numbers.json` remembers each channel's number so it never changes. Channels missing for 90 days are forgotten and their numbers freed (`retain_days` in `sources.json`). Don't delete this file unless you want everything renumbered.
+- `.github/workflows/update.yml` runs the script daily and commits the playlist, guide and number file. You can also run it manually from the Actions tab.
 
 Run locally: `python build_playlist.py` (add `--no-check` to skip link testing).
 

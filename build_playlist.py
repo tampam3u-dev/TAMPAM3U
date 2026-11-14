@@ -5,7 +5,8 @@ What it does:
   1. Downloads every playlist listed in sources.json
   2. Merges them, removes duplicates, optionally drops dead links
   3. Groups channels (Local, News, Sports, Movies, Kids, Music, Entertainment)
-     and gives each a channel number (tvg-chno) so Kodi shows a Plex-like list
+     and gives each a permanent channel number (tvg-chno, remembered in
+     channel_numbers.json) so Kodi shows a Plex-like list
   4. Reads the guide (XMLTV) links the source playlists declare, downloads them,
      keeps only entries for channels in the final playlist, and writes one
      combined, compressed guide file
@@ -22,6 +23,8 @@ import json
 import re
 import sys
 import urllib.request
+import zlib
+from datetime import date, timedelta
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 
@@ -38,10 +41,10 @@ GROUP_KEYWORDS = [
     ("Movies", ["movie", "film", "cinema", "horror", "western", "action", "thriller", "romance"]),
     ("Music", ["music", "mtv", "vevo", "radio", "concert", "karaoke"]),
 ]
-# First channel number in each group (Plex-style numbering)
-GROUP_BASE = {"Local": 100, "News": 200, "Sports": 300, "Movies": 400,
-              "Kids": 500, "Music": 600, "Entertainment": 700}
-OTHER_BASE = 800
+# First channel number in each group (blocks of 1000 so groups never overflow)
+GROUP_BASE = {"Local": 1000, "News": 2000, "Sports": 3000, "Movies": 4000,
+              "Kids": 5000, "Music": 6000, "Entertainment": 7000}
+OTHER_BASE = 8000
 
 
 def fetch_bytes(url, timeout=120):
@@ -120,17 +123,67 @@ def alive(ch, timeout=10):
         return False
 
 
-def assign_numbers(channels):
-    """Give each channel a tvg-chno, grouped in blocks of 100."""
-    counters = {}
+def chan_key(c):
+    """Stable identity for a channel: its guide id, else its cleaned-up name."""
+    tid = c["attrs"].get("tvg-id")
+    return tid if tid else "name:" + norm_name(c["name"])
+
+
+def group_base(group):
+    if group in GROUP_BASE:
+        return GROUP_BASE[group]
+    # Unknown groups get a deterministic block from 8000 up
+    return OTHER_BASE + 1000 * (zlib.crc32(group.encode()) % 20)
+
+
+def load_numbers(path):
+    try:
+        return json.load(open(path, encoding="utf-8"))
+    except (FileNotFoundError, ValueError):
+        return {}
+
+
+def save_numbers(path, store):
+    items = sorted(store.items(), key=lambda kv: kv[1]["chno"])
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("{\n")
+        f.write(",\n".join(f"  {json.dumps(k)}: {json.dumps(v)}" for k, v in items))
+        f.write("\n}\n")
+
+
+def assign_numbers(channels, store, today, retain_days):
+    """Give each channel a permanent number (tvg-chno), remembered in `store`.
+
+    Existing channels keep their number. New channels get the next free number
+    in their group's block. Channels unseen for `retain_days` are forgotten and
+    their numbers freed.
+    """
+    cutoff = today - timedelta(days=retain_days)
+    for k in [k for k, v in store.items() if date.fromisoformat(v["last_seen"]) < cutoff]:
+        del store[k]
+    used = {v["chno"] for v in store.values()}
+    used_keys = set()
+    new_count = 0
     for c in channels:
-        g = c["group"]
-        base = GROUP_BASE.get(g)
-        if base is None:
-            base = GROUP_BASE.setdefault(g, OTHER_BASE + 100 * (len(GROUP_BASE) - 7))
-        n = counters.get(g, base)
-        c["chno"] = n
-        counters[g] = n + 1
+        key = base_key = chan_key(c)
+        n = 2
+        while key in used_keys:  # two channels sharing one id
+            key = f"{base_key}#{n}"
+            n += 1
+        used_keys.add(key)
+        entry = store.get(key)
+        if entry is None:
+            num = group_base(c["group"])
+            while num in used:
+                num += 1
+            entry = {"chno": num, "group": c["group"]}
+            store[key] = entry
+            used.add(num)
+            new_count += 1
+        entry["name"] = c["name"]
+        entry["last_seen"] = today.isoformat()
+        c["chno"] = entry["chno"]
+    print(f"Channel numbers: {len(channels) - new_count} kept, {new_count} new, {len(store) - len(channels)} reserved for missing channels")
 
 
 def build_epg(epg_urls, wanted_ids, out_path):
@@ -172,6 +225,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="sources.json")
     ap.add_argument("--out", default="tampam3u.m3u")
+    ap.add_argument("--numbers", default="channel_numbers.json")
     ap.add_argument("--no-check", action="store_true")
     ap.add_argument("--no-epg", action="store_true")
     ap.add_argument("--workers", type=int, default=32)
@@ -211,7 +265,10 @@ def main():
     for c in merged:
         c["group"] = classify(c)
     merged.sort(key=lambda c: (c["group"], c["name"].lower()))
-    assign_numbers(merged)
+    store = load_numbers(args.numbers)
+    assign_numbers(merged, store, date.today(), cfg.get("retain_days", 90))
+    save_numbers(args.numbers, store)
+    merged.sort(key=lambda c: c["chno"])
 
     epg_public = cfg.get("epg_public_url", "")
     with open(args.out, "w", encoding="utf-8") as f:

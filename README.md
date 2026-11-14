@@ -24,7 +24,7 @@ https://raw.githubusercontent.com/tampam3u-dev/TAMPAM3U/main/tampam3u.m3u
 - `build_playlist.py` downloads them, removes duplicates, drops dead links, sorts channels into groups (Local 1000s, News 2000s, Sports 3000s, Movies 4000s, Kids 5000s, Music 6000s, Entertainment 7000s), gives each a permanent channel number, and writes `tampam3u.m3u`.
 - It also collects the guide links the source playlists declare, merges them (keeping only channels in the playlist) and writes `epg.xml.gz`, which gives Kodi its Plex-style TV Guide grid.
 - `guide_report.md` is rewritten each run and shows how many channels per source have guide listings.
-- `channel_numbers.json` remembers each channel's number so it never changes. Channels missing for 90 days are forgotten and their numbers freed (`retain_days` in `sources.json`). Don't delete this file unless you want everything renumbered.
+- `channel_numbers.json` remembers each channel's number so it never changes. Channels missing for 90 days are forgotten and their numbers freed (`retain_days` in `sources.json`). To renumber everything on purpose (for example after changing how channels are sorted), run the workflow manually from the Actions tab and tick **renumber**. This breaks saved Kodi favorites.
 - `.github/workflows/update.yml` runs the script daily and commits the playlist, guide and number file. You can also run it manually from the Actions tab.
 
 Run locally: `python build_playlist.py` (add `--no-check` to skip link testing).

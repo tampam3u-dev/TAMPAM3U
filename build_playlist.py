@@ -109,6 +109,12 @@ def norm_name(name):
     return re.sub(r"[^a-z0-9]", "", n)
 
 
+def sort_name(name):
+    """Sort key that ignores leading 'The', 'A', 'An' (so 'The Weather Channel' sorts under W)."""
+    n = re.sub(r"^(the|an|a)\s+", "", name.strip().lower())
+    return n or name.lower()
+
+
 def alive(ch, timeout=10):
     """True if the stream URL responds and looks like HLS/video."""
     try:
@@ -260,6 +266,7 @@ def main():
     ap.add_argument("--config", default="sources.json")
     ap.add_argument("--out", default="tampam3u.m3u")
     ap.add_argument("--numbers", default="channel_numbers.json")
+    ap.add_argument("--renumber", action="store_true", help="ignore saved numbers and renumber every channel")
     ap.add_argument("--no-check", action="store_true")
     ap.add_argument("--no-epg", action="store_true")
     ap.add_argument("--workers", type=int, default=32)
@@ -298,8 +305,8 @@ def main():
 
     for c in merged:
         c["group"] = classify(c)
-    merged.sort(key=lambda c: (c["group"], c["name"].lower()))
-    store = load_numbers(args.numbers)
+    merged.sort(key=lambda c: (c["group"], sort_name(c["name"])))
+    store = {} if args.renumber else load_numbers(args.numbers)
     assign_numbers(merged, store, date.today(), cfg.get("retain_days", 90))
     save_numbers(args.numbers, store)
     merged.sort(key=lambda c: c["chno"])

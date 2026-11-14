@@ -33,4 +33,4 @@ Run locally: `python build_playlist.py` (add `--no-check` to skip link testing).
 
 - Streams from Pluto TV and similar services generally only work from US IP addresses.
 - This does not include live ABC/NBC/CBS/Fox local stations; those are not freely streamable. The "Local" group holds local news and station streams that broadcasters publish openly.
-- Only free, publicly offered streams are included. Do not add paid or pirated sources.
+- Only free, publicly offered streams are included.

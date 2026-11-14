@@ -189,7 +189,7 @@ def assign_numbers(channels, store, today, retain_days):
 def build_epg(epg_urls, wanted_ids, out_path):
     """Download each guide, keep entries for wanted channel ids, write one .xml.gz."""
     root = ET.Element("tv", {"generator-info-name": "TAMPAM3U"})
-    seen_channels, seen_progs = set(), set()
+    seen_channels, seen_progs, prog_channels = set(), set(), set()
     for url in epg_urls:
         try:
             data = fetch_bytes(url, timeout=300)
@@ -209,6 +209,7 @@ def build_epg(epg_urls, wanted_ids, out_path):
                     key = (el.get("channel"), el.get("start"))
                     if el.get("channel") in wanted_ids and key not in seen_progs:
                         seen_progs.add(key)
+                        prog_channels.add(key[0])
                         root.append(el)
                         kept_pr += 1
                     else:
@@ -219,6 +220,39 @@ def build_epg(epg_urls, wanted_ids, out_path):
     with gzip.open(out_path, "wb") as f:
         ET.ElementTree(root).write(f, encoding="utf-8", xml_declaration=True)
     print(f"Guide covers {len(seen_channels)} of {len(wanted_ids)} channels with IDs -> {out_path}")
+    return seen_channels, prog_channels
+
+
+def write_report(channels, prog_ids, path, sample=15):
+    """Write guide_report.md: how many channels per source have real listings."""
+    by_src = {}
+    for c in channels:
+        tid = c["attrs"].get("tvg-id")
+        r = by_src.setdefault(c["source"], {"total": 0, "ok": 0, "no_id": [], "no_listings": []})
+        r["total"] += 1
+        if not tid:
+            r["no_id"].append(c["name"])
+        elif tid not in prog_ids:
+            r["no_listings"].append(f'{c["name"]} ({tid})')
+        else:
+            r["ok"] += 1
+    total = sum(r["total"] for r in by_src.values())
+    ok = sum(r["ok"] for r in by_src.values())
+    lines = ["# Guide match report", "", f"Generated {date.today()}. {ok} of {total} channels have guide listings.", "",
+             "| Source | Channels | With listings | No guide ID | ID but no listings |",
+             "|---|---|---|---|---|"]
+    for name, r in by_src.items():
+        lines.append(f'| {name} | {r["total"]} | {r["ok"]} | {len(r["no_id"])} | {len(r["no_listings"])} |')
+    for name, r in by_src.items():
+        if r["no_id"] or r["no_listings"]:
+            lines += ["", f"## {name}"]
+            if r["no_id"]:
+                lines.append(f'No guide ID (first {sample}): ' + ", ".join(r["no_id"][:sample]))
+            if r["no_listings"]:
+                lines.append(f'ID but no listings (first {sample}): ' + ", ".join(r["no_listings"][:sample]))
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"Guide report: {ok} of {total} channels have listings -> {path}")
 
 
 def main():
@@ -291,7 +325,8 @@ def main():
 
     if not args.no_epg:
         wanted = {c["attrs"]["tvg-id"] for c in merged if c["attrs"].get("tvg-id")}
-        build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"))
+        _, prog_ids = build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"))
+        write_report(merged, prog_ids, "guide_report.md")
 
 
 if __name__ == "__main__":

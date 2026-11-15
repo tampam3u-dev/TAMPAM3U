@@ -1,40 +1,40 @@
 # Category report
 
-Generated 2026-11-15. 2494 channels.
+Generated 2026-11-15. 2333 channels.
 
 | Group | Channels |
 |---|---|
 | Local | 165 |
-| News | 135 |
+| News | 132 |
 | Government | 69 |
 | Community TV | 50 |
 | Weather | 10 |
-| Sports | 184 |
-| Movies | 218 |
+| Sports | 171 |
+| Movies | 214 |
 | Holiday | 19 |
 | Classic TV | 32 |
-| Comedy | 85 |
-| Drama | 33 |
-| Crime & Mystery | 105 |
-| Reality | 103 |
-| Sci-Fi & Fantasy | 37 |
-| Documentary | 120 |
-| Lifestyle | 145 |
+| Comedy | 81 |
+| Drama | 26 |
+| Crime & Mystery | 100 |
+| Reality | 102 |
+| Sci-Fi & Fantasy | 33 |
+| Documentary | 115 |
+| Lifestyle | 143 |
 | Game Shows | 36 |
-| Kids & Family | 125 |
+| Kids & Family | 124 |
 | Anime & Gaming | 43 |
-| Music | 110 |
-| Relaxation | 23 |
+| Music | 100 |
+| Relaxation | 22 |
 | Religious | 115 |
-| Spanish | 206 |
-| Culture & Heritage | 71 |
+| Spanish | 197 |
+| Culture & Heritage | 69 |
 | Shopping | 20 |
-| Entertainment | 235 |
+| Entertainment | 145 |
 
-## Still in Entertainment (235)
+## Still in Entertainment (145)
 
-### United States (162)
-AddictaTV, Aliwko, Alternative, The Biggest Loser, Bizaar, BOOT, The Carol Burnett Show, Cindie TV, Combat War Channel, Creator Television, The Doctor Blake Mysteries, Dove, The Ed Sullivan Show, The Emeril Lagasse Channel, Entertains, The FBI Files, FEVA TV, FrightFlix, FUEL TV, GameTVGO, Gata Salvaje, GET, Get.Factual, Ghost Hunters Channel, Ghosts Are Real ...
+### United States (72)
+AddictaTV, Aliwko, Alternative, Bizaar, BOOT, Cindie TV, Combat War Channel, Creator Television, Dove, Entertains, FEVA TV, FrightFlix, FUEL TV, GameTVGO, Gata Salvaje, GET, Get.Factual, Ghost Hunters Channel, Ghosts Are Real, Glewed TV, GLORY Kickboxing, Go Wild, GoTraveler, Great British Menu, Green Acres ...
 
 ### General (37)
 AFTV (1080p), AMGA TV (720p) [Not 24/7], AMP 1 (720p), Binge (720p), GunAz TV, NAT TV (1080p), NCTV79 (1080p), NTD TV (1080p), NTD TV West (720p), Pacific Island Network (1080p), Pars TV, Payam-e-Afghan TV (480p) [Not 24/7], PCT Channel 26 (720p), PCT Channel 27 (720p), PCTV 28 (480p), PhillyCAM (720p), RTH-TV1 (1080p), RTVi US (1080p), RVTV Grants Pass (720p), RVTV Prime (720p), RVTV Voices (720p), Scottsdale Channel 11, SFGovTV2 (720p), SGTN-49 (720p), Shout! Factory TV (1080p) ...

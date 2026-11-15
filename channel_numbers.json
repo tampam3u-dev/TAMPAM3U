@@ -299,6 +299,7 @@
   "USAJ4300005PJ": {"chno": 2132, "group": "News", "name": "Yahoo Finance", "last_seen": "2026-11-15"},
   "YahooFinance.us@SD": {"chno": 2133, "group": "News", "name": "Yahoo! Finance (1080p)", "last_seen": "2026-11-15"},
   "TheYoungTurks.us@SD": {"chno": 2134, "group": "News", "name": "The Young Turks (720p)", "last_seen": "2026-11-15"},
+  "News12Brooklyn.us@SD": {"chno": 2135, "group": "News", "name": "News12 Brooklyn (720p) [Geo-blocked]", "last_seen": "2026-11-15"},
   "AccessVisionChannel17.us@SD": {"chno": 3000, "group": "Government", "name": "AccessVision Channel 17 (720p)", "last_seen": "2026-11-15"},
   "ACTV.us@SD": {"chno": 3001, "group": "Government", "name": "ACTV (United States) (720p)", "last_seen": "2026-11-15"},
   "ATL26.us@SD": {"chno": 3002, "group": "Government", "name": "ATL 26", "last_seen": "2026-11-15"},

@@ -214,6 +214,27 @@ def merge_channels(all_channels, check_links=True, workers=32):
     return merged
 
 
+def apply_exclusions(channels, config):
+    """Exclude exact IDs, full channel names, or whole category groups.
+
+    IDs are checked against both original and EPG-mapped IDs, so exclusions
+    remain effective even when a guide match changes a station's tvg-id.
+    """
+    ids = set(config.get("channel_ids", []))
+    names = {name.strip().casefold() for name in config.get("channel_names", [])}
+    groups = {name.strip().casefold() for name in config.get("groups", [])}
+    kept, removed = [], []
+    for c in channels:
+        tid = c["attrs"].get("tvg-id", "")
+        original_tid = c.get("original_tvg_id", tid)
+        if (tid in ids or original_tid in ids or c["name"].strip().casefold() in names
+                or c["group"].strip().casefold() in groups):
+            removed.append(c)
+        else:
+            kept.append(c)
+    return kept, removed
+
+
 def chan_key(c):
     """Stable identity for a channel: its guide id, else its cleaned-up name."""
     tid = c["attrs"].get("tvg-id")
@@ -585,6 +606,7 @@ def main():
     ap.add_argument("--numbers", default="channel_numbers.json")
     ap.add_argument("--categories", default="categories.json")
     ap.add_argument("--favorites", default="favorites.json")
+    ap.add_argument("--excluded", default="excluded_channels.json")
     ap.add_argument("--renumber", action="store_true", help="ignore saved numbers and renumber every channel")
     ap.add_argument("--no-check", action="store_true")
     ap.add_argument("--no-epg", action="store_true")
@@ -617,21 +639,27 @@ def main():
 
     for c in merged:
         c["group"] = classify(c)
+        c["original_tvg_id"] = c["attrs"].get("tvg-id", "")
     merged.sort(key=lambda c: (c["group"], sort_name(c["name"])))
     store = {} if args.renumber else load_numbers(args.numbers)
     assign_numbers(merged, store, date.today(), cfg.get("retain_days", 90))
     save_numbers(args.numbers, store)
+
+    callsign_urls = cfg.get("callsign_epg", [])
+    if callsign_urls and not args.no_epg:
+        map_callsigns(merged, callsign_urls)
+        epg_urls.extend(u for u in callsign_urls if u not in epg_urls)
+
+    with open(args.excluded, encoding="utf-8") as f:
+        exclusions = json.load(f)
+    merged, excluded = apply_exclusions(merged, exclusions)
+    print(f"Channel exclusions: removed {len(excluded)} channels; {len(merged)} remain")
     fav_missing = apply_favorites(merged, load_favorites(args.favorites))
     if fav_missing:
         print("WARNING: favorites not found: " + ", ".join(fav_missing), file=sys.stderr)
     merged.sort(key=lambda c: c["chno"])
     write_category_report(merged, "category_report.md", fav_missing)
     write_channel_list(merged, "channel_list.txt")
-
-    callsign_urls = cfg.get("callsign_epg", [])
-    if callsign_urls and not args.no_epg:
-        map_callsigns(merged, callsign_urls)
-        epg_urls.extend(u for u in callsign_urls if u not in epg_urls)
 
     epg_public = cfg.get("epg_public_url", "")
     with open(args.out, "w", encoding="utf-8") as f:
@@ -657,7 +685,7 @@ def main():
         names = {c["attrs"]["tvg-id"]: c["name"] for c in merged if c["attrs"].get("tvg-id")}
         _, prog_ids = build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"),
                                 names, cfg.get("epg_aliases", {}))
-        minimum_epg = cfg.get("minimum_epg_channels", 400)
+        minimum_epg = min(cfg.get("minimum_epg_channels", 400), max(1, len(wanted) // 4))
         if len(prog_ids) < minimum_epg:
             sys.exit(f"ERROR: only {len(prog_ids)} guide IDs have programmes; "
                      f"minimum is {minimum_epg}. Not publishing an empty guide.")

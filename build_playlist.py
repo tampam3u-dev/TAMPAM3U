@@ -24,7 +24,7 @@ import re
 import sys
 import urllib.request
 import zlib
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
 
@@ -244,10 +244,11 @@ def assign_numbers(channels, store, today, retain_days):
     print(f"Channel numbers: {len(channels) - new_count} kept, {new_count} new, {len(store) - len(channels)} reserved for missing channels")
 
 
-def build_epg(epg_urls, wanted_ids, out_path):
+def build_epg(epg_urls, wanted_ids, out_path, channel_names=None):
     """Download each guide, keep entries for wanted channel ids, write one .xml.gz."""
     root = ET.Element("tv", {"generator-info-name": "TAMPAM3U"})
-    seen_channels, seen_progs, prog_channels = set(), set(), set()
+    seen_channels, seen_progs, prog_channels, on_now = set(), set(), set(), set()
+    now = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
     for url in epg_urls:
         try:
             data = fetch_bytes_cached(url, 300)
@@ -268,6 +269,8 @@ def build_epg(epg_urls, wanted_ids, out_path):
                     if el.get("channel") in wanted_ids and key not in seen_progs:
                         seen_progs.add(key)
                         prog_channels.add(key[0])
+                        if (el.get("start") or "")[:14] <= now < (el.get("stop") or "")[:14]:
+                            on_now.add(key[0])
                         root.append(el)
                         kept_pr += 1
                     else:
@@ -275,9 +278,17 @@ def build_epg(epg_urls, wanted_ids, out_path):
             print(f"Guide {url}: kept {kept_ch} channels, {kept_pr} programmes")
         except Exception as e:
             print(f"WARNING: could not use guide {url}: {e}", file=sys.stderr)
+    # XMLTV clients require a <channel> definition for every programme id.
+    # Some upstream guides publish programmes without the matching definition.
+    for cid in sorted(prog_channels - seen_channels):
+        el = ET.Element("channel", {"id": cid})
+        ET.SubElement(el, "display-name").text = (channel_names or {}).get(cid, cid)
+        root.insert(len(seen_channels), el)
+        seen_channels.add(cid)
     with gzip.open(out_path, "wb") as f:
         ET.ElementTree(root).write(f, encoding="utf-8", xml_declaration=True)
     print(f"Guide covers {len(seen_channels)} of {len(wanted_ids)} channels with IDs -> {out_path}")
+    print(f"Guide currently has a show in the time slot for {len(on_now)} of {len(wanted_ids)} channel IDs")
     return seen_channels, prog_channels
 
 
@@ -321,6 +332,7 @@ def map_callsigns(channels, urls):
     """Give iptv-org local stations a guide id by matching call signs (KAAL, WFTV...)
     against the channels of a US local-stations guide. Returns (mapped, total)."""
     index = {}
+    scheduled_ids = set()
     for url in urls:
         try:
             data = fetch_bytes_cached(url, 300)
@@ -332,9 +344,10 @@ def map_callsigns(channels, urls):
                     for t in texts:
                         for m in GUIDE_CALLSIGN_RE.finditer(t.upper()):
                             if m.group(1) not in NOT_CALLSIGNS:
-                                index.setdefault(m.group(1), el.get("id"))
+                                index.setdefault(m.group(1), []).append(el.get("id"))
                     el.clear()
                 elif el.tag == "programme":
+                    scheduled_ids.add(el.get("channel"))
                     el.clear()
         except Exception as e:
             print(f"WARNING: could not read local guide {url}: {e}", file=sys.stderr)
@@ -351,8 +364,9 @@ def map_callsigns(channels, urls):
             continue
         total += 1
         for tok in signs:
-            if tok in index:
-                c["attrs"]["tvg-id"] = index[tok]
+            candidate = next((cid for cid in index.get(tok, []) if cid in scheduled_ids), None)
+            if candidate:
+                c["attrs"]["tvg-id"] = candidate
                 mapped += 1
                 break
     print(f"Local guide: matched {mapped} of {total} local stations by call sign ({len(index)} call signs in guide)")
@@ -520,7 +534,8 @@ def main():
 
     if not args.no_epg:
         wanted = {c["attrs"]["tvg-id"] for c in merged if c["attrs"].get("tvg-id")}
-        _, prog_ids = build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"))
+        names = {c["attrs"]["tvg-id"]: c["name"] for c in merged if c["attrs"].get("tvg-id")}
+        _, prog_ids = build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"), names)
         write_report(merged, prog_ids, "guide_report.md")
 
 

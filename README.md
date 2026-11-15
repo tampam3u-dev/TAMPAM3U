@@ -18,6 +18,19 @@ https://raw.githubusercontent.com/tampam3u-dev/TAMPAM3U/main/tampam3u.m3u
 3. EPG settings > XMLTV URL = `https://raw.githubusercontent.com/tampam3u-dev/TAMPAM3U/main/epg.xml.gz`
 4. Restart Kodi and open TV.
 
+**If the guide grid shows blank time slots:** In Kodi, confirm that PVR IPTV
+Simple Client's EPG source is **Remote path** and that the XMLTV URL above is
+configured (the playlist URL goes in the M3U setting, not the EPG setting).
+Then use Kodi **Settings > PVR & Live TV > Guide > Clear data**, and restart
+Kodi so it downloads the current XMLTV data. Kodi's menu names vary by version.
+Make sure the device clock and time zone are correct. The guide timestamps are
+in UTC and Kodi converts them to local time automatically; do not manually
+offset the guide to Eastern time.
+
+**Not every free stream has schedule data.** Check `guide_report.md` for the
+actual guide coverage by source. A channel with no matching listings cannot
+display show titles in its time slots; the builder does not invent show names.
+
 ## How it works
 
 - `sources.json` lists the playlists to merge. Add or remove sources there.

@@ -17,6 +17,7 @@ Usage:
     python build_playlist.py --no-epg     # skip the guide
 """
 import argparse
+import copy
 import gzip
 import io
 import json
@@ -282,10 +283,14 @@ def assign_numbers(channels, store, today, retain_days):
     print(f"Channel numbers: {len(channels) - new_count} kept, {new_count} new, {len(store) - len(channels)} reserved for missing channels")
 
 
-def build_epg(epg_urls, wanted_ids, out_path, channel_names=None):
+def build_epg(epg_urls, wanted_ids, out_path, channel_names=None, epg_aliases=None):
     """Download each guide, keep entries for wanted channel ids, write one .xml.gz."""
     root = ET.Element("tv", {"generator-info-name": "TAMPAM3U"})
     seen_channels, seen_progs, prog_channels, on_now = set(), set(), set(), set()
+    aliases_by_guide_id = {}
+    for channel_id, guide_id in (epg_aliases or {}).items():
+        if channel_id in wanted_ids and guide_id != channel_id:
+            aliases_by_guide_id.setdefault(guide_id, []).append(channel_id)
     now = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
     for url in epg_urls:
         try:
@@ -303,16 +308,21 @@ def build_epg(epg_urls, wanted_ids, out_path, channel_names=None):
                     else:
                         el.clear()
                 elif el.tag == "programme":
-                    key = (el.get("channel"), el.get("start"))
-                    if el.get("channel") in wanted_ids and key not in seen_progs:
+                    cid = el.get("channel")
+                    targets = ([cid] if cid in wanted_ids else []) + aliases_by_guide_id.get(cid, [])
+                    for target in targets:
+                        key = (target, el.get("start"))
+                        if key in seen_progs:
+                            continue
                         seen_progs.add(key)
-                        prog_channels.add(key[0])
+                        prog_channels.add(target)
                         if (el.get("start") or "")[:14] <= now < (el.get("stop") or "")[:14]:
-                            on_now.add(key[0])
-                        root.append(el)
+                            on_now.add(target)
+                        programme = copy.deepcopy(el)
+                        programme.set("channel", target)
+                        root.append(programme)
                         kept_pr += 1
-                    else:
-                        el.clear()
+                    el.clear()
             print(f"Guide {url}: kept {kept_ch} channels, {kept_pr} programmes")
         except Exception as e:
             print(f"WARNING: could not use guide {url}: {e}", file=sys.stderr)
@@ -605,7 +615,8 @@ def main():
     if not args.no_epg:
         wanted = {c["attrs"]["tvg-id"] for c in merged if c["attrs"].get("tvg-id")}
         names = {c["attrs"]["tvg-id"]: c["name"] for c in merged if c["attrs"].get("tvg-id")}
-        _, prog_ids = build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"), names)
+        _, prog_ids = build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"),
+                                names, cfg.get("epg_aliases", {}))
         minimum_epg = cfg.get("minimum_epg_channels", 400)
         if len(prog_ids) < minimum_epg:
             sys.exit(f"ERROR: only {len(prog_ids)} guide IDs have programmes; "

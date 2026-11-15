@@ -5,8 +5,33 @@
   "epg_output": "epg.xml.gz",
   "epg_public_url": "https://raw.githubusercontent.com/tampam3u-dev/TAMPAM3U/main/epg.xml.gz",
   "extra_epg": [
-    "https://iptv-org.github.io/epg/guides/us.xml"
+    "https://iptv-org.github.io/epg/guides/us.xml",
+    "https://epgshare01.online/epgshare01/epg_ripper_US2.xml.gz"
   ],
+  "epg_aliases": {
+    "ESPN.us@HD": "ESPN.HD.us2",
+    "ESPN2.us@HD": "ESPN2.HD.us2",
+    "ESPNU.us@HD": "ESPNU.HD.us2",
+    "FoxSports1.us@HD": "FS1.Fox.Sports.1.HD.us2",
+    "NBATV.us@SD": "NBA.TV.HD.us2",
+    "CNN.us@SD": "CNN.HD.us2",
+    "CNN.us@HD": "CNN.HD.us2",
+    "NewsmaxTV.us@SD": "Newsmax.TV.HD.us2",
+    "BloombergTV.us@US": "Bloomberg.HD.us2",
+    "CBSNews247.us@SD": "CBS.News.National.Stream.us2",
+    "CheddarNews.us@SD": "Cheddar.us2",
+    "FoxBusinessNetwork.us@SD": "Fox.Business.HD.us2",
+    "HLN.us@SD": "HLN.HD.us2",
+    "MSNOW.us@SD": "MS.NOW.HD.us2",
+    "Newsy.us@SD": "Newsy.us2",
+    "OneAmericaNewsNetwork.us@SD": "One.America.News.Network.HD.us2",
+    "SalemNewsChannel.us@SD": "Salem.News.Channel.us2",
+    "ScrippsNews.us@SD": "Scripps.News.us2",
+    "24HourFreeMovies.us@SD": "6a1610bebdf296985fd95603-5fd115bab7ef8d002dcf181d",
+    "Cinemax.us@West": "Cinemax.HD.(Pacific).us2",
+    "CinemaxClassics.us@East": "Cinemax.Classics.us2",
+    "CinemaxHits.us@East": "Cinemax.Hits.us2"
+  },
   "callsign_epg": [
     "https://epgshare01.online/epgshare01/epg_ripper_US_LOCALS1.xml.gz"
   ],

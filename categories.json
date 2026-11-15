@@ -3,9 +3,11 @@
   "order": [
     "Local",
     "News",
+    "Government",
     "Weather",
     "Sports",
     "Movies",
+    "Holiday",
     "Classic TV",
     "Comedy",
     "Drama",
@@ -18,7 +20,10 @@
     "Kids & Family",
     "Anime & Gaming",
     "Music",
+    "Relaxation",
+    "Religious",
     "Spanish",
+    "Shopping",
     "Entertainment"
   ],
   "default_group": "Entertainment",
@@ -51,7 +56,52 @@
         "hispan",
         "mexic",
         "tv azteca",
-        "estrella"
+        "estrella",
+        "canela",
+        "latv!",
+        "knino",
+        "filamtv"
+      ]
+    },
+    {
+      "group": "Religious",
+      "keywords": [
+        "religious",
+        "faith",
+        "church",
+        "christian",
+        "gospel",
+        "bible",
+        "god!",
+        "jesus",
+        "catholic",
+        "ewtn",
+        "tbn",
+        "daystar",
+        "cbn",
+        "hillsong",
+        "jewish",
+        "islam",
+        "quran",
+        "muslim",
+        "hindu",
+        "buddh",
+        "worship",
+        "prayer",
+        "ministr",
+        "sermon",
+        "pastor",
+        "insp!",
+        "lutheran",
+        "baptist",
+        "adventist",
+        "3abn",
+        "praise",
+        "salvation",
+        "psalm",
+        "sacred",
+        "spiritual",
+        "inspiration"
       ]
     },
     {
@@ -69,7 +119,21 @@
         "press your luck",
         "pyramid",
         "card sharks",
-        "hollywood squares"
+        "hollywood squares",
+        "buzzr"
+      ]
+    },
+    {
+      "group": "Shopping",
+      "keywords": [
+        "shop",
+        "qvc",
+        "hsn!",
+        "jewelry",
+        "gemporia",
+        "home shopping",
+        "deal",
+        "bargain"
       ]
     },
     {
@@ -103,13 +167,35 @@
         "esports",
         "gamer",
         "manga",
-        "twitch"
+        "twitch",
+        "animat",
+        "adult swim"
       ]
     },
     {
       "group": "Weather",
       "keywords": [
         "weather"
+      ]
+    },
+    {
+      "group": "Government",
+      "keywords": [
+        "legislat",
+        "senate!",
+        "capitol",
+        "city council",
+        "government",
+        "public access",
+        "civic",
+        "municipal",
+        "statehouse",
+        "state house",
+        "general assembly",
+        "c-span",
+        "cspan",
+        "county commission",
+        "house of representatives"
       ]
     },
     {
@@ -125,8 +211,6 @@
         "reuters",
         "euronews",
         "al jazeera",
-        "c-span",
-        "cspan",
         "politic",
         "opinion",
         "business",
@@ -184,6 +268,42 @@
       ]
     },
     {
+      "group": "Holiday",
+      "keywords": [
+        "christmas",
+        "holiday",
+        "season's greetings",
+        "seasons greetings",
+        "xmas",
+        "yule",
+        "halloween",
+        "santa",
+        "hanukkah",
+        "thanksgiving"
+      ]
+    },
+    {
+      "group": "Relaxation",
+      "keywords": [
+        "ambian",
+        "relax",
+        "fireplace",
+        "aquarium",
+        "calm",
+        "sleep",
+        "nature sounds",
+        "white noise",
+        "meditat",
+        "zen!",
+        "chill",
+        "spa!",
+        "scenic",
+        "yule log",
+        "lofi",
+        "lo-fi"
+      ]
+    },
+    {
       "group": "Music",
       "keywords": [
         "music",
@@ -208,9 +328,9 @@
         "vh1",
         "tunes",
         "songs",
-        "lofi",
-        "lo-fi",
-        "opera"
+        "opera",
+        "circle!",
+        "fuse!"
       ]
     },
     {
@@ -238,7 +358,9 @@
         "poirot",
         "columbo",
         "perry mason",
-        "midsomer"
+        "midsomer",
+        "justice central",
+        "justice"
       ]
     },
     {
@@ -257,7 +379,10 @@
         "b-movie",
         "blockbuster",
         "hallmark movies",
-        "cult movie"
+        "cult movie",
+        "grit!",
+        "hi-yah",
+        "asiancrush"
       ]
     },
     {
@@ -278,7 +403,8 @@
         "supernatural",
         "outer limits",
         "battlestar",
-        "firefly"
+        "firefly",
+        "comet!"
       ]
     },
     {
@@ -306,7 +432,14 @@
         "explorer",
         "ancient",
         "archaeolog",
-        "wildlife"
+        "wildlife",
+        "educat",
+        "learn",
+        "university",
+        "college",
+        "classroom",
+        "lecture",
+        "tutorial"
       ]
     },
     {
@@ -440,7 +573,8 @@
         "woodworking",
         "this old house",
         "painting",
-        "joy of"
+        "joy of",
+        "bark tv"
       ]
     },
     {

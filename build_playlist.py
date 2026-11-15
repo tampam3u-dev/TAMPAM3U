@@ -298,13 +298,14 @@ def write_category_report(channels, path, sample=40):
     default = CATS["default_group"]
     left = [c for c in channels if c["group"] == default]
     if left:
-        src = {}
+        by_cat = {}
         for c in left:
-            k = c["attrs"].get("group-title", "") or "(none)"
-            src[k] = src.get(k, 0) + 1
-        top = sorted(src.items(), key=lambda kv: -kv[1])[:20]
-        lines += ["", f"## Still in {default}", "", "Source categories: " + ", ".join(f"{k} ({v})" for k, v in top), "",
-                  f"First {sample} names: " + ", ".join(c["name"] for c in left[:sample])]
+            by_cat.setdefault(c["attrs"].get("group-title", "") or "(none)", []).append(c["name"])
+        lines += ["", f"## Still in {default} ({len(left)})", ""]
+        for k, names in sorted(by_cat.items(), key=lambda kv: -len(kv[1]))[:12]:
+            lines.append(f"### {k} ({len(names)})")
+            lines.append(", ".join(names[:25]) + (" ..." if len(names) > 25 else ""))
+            lines.append("")
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
     print(f"Category report -> {path}")

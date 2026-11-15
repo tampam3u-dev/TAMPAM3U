@@ -100,7 +100,11 @@
         "galavision",
         "tudn",
         "tve internacional",
-        "rctv"
+        "rctv",
+        "entravision",
+        "freetv",
+        "turismo",
+        "tele boston"
       ]
     },
     {
@@ -145,7 +149,8 @@
         "byu",
         "his glory",
         "tct!",
-        "scientology"
+        "scientology",
+        "world harvest"
       ]
     },
     {
@@ -209,7 +214,9 @@
         "camp spoopy",
         "123go",
         "life with derek",
-        "nastya"
+        "nastya",
+        "fluffy tv",
+        "eddie's wonderland"
       ]
     },
     {
@@ -289,7 +296,21 @@
         "bmc-hd",
         "carlsbad",
         "lakewood",
-        "las vegas tonight"
+        "las vegas tonight",
+        "city of ",
+        "cmac",
+        "concord tv",
+        "creatv",
+        "detroit channel",
+        "fc public",
+        "fctv",
+        "monterey channel",
+        "montgomery channel",
+        "mrvtv",
+        "temecula",
+        "wehotv",
+        "hbtv",
+        "ccx1"
       ]
     },
     {
@@ -371,7 +392,11 @@
         "watch aew",
         "aew!",
         "extrema",
-        "combatv"
+        "combatv",
+        "f1 channel",
+        "vsin",
+        "yes network",
+        "wired2fish"
       ]
     },
     {
@@ -441,7 +466,9 @@
         "circle!",
         "fuse!",
         "def jam",
-        "revolt"
+        "revolt",
+        "easy listening",
+        "euro hits"
       ]
     },
     {
@@ -490,7 +517,9 @@
         "mbc",
         "lbc international",
         "ganj e hozour",
-        "omid e iran"
+        "omid e iran",
+        "shabakeh",
+        "star channel international"
       ]
     },
     {
@@ -581,7 +610,8 @@
         "mutant x",
         "asylum",
         "cosmic",
-        "continuum"
+        "continuum",
+        "farscape"
       ]
     },
     {
@@ -623,7 +653,8 @@
         "beyond belief",
         "vice tv",
         "ted!",
-        "earthxtra"
+        "earthxtra",
+        "extreme jobs"
       ]
     },
     {
@@ -662,7 +693,8 @@
         "name game",
         "dr. phil",
         "trutv",
-        "don't tell the bride"
+        "don't tell the bride",
+        "four in a bed"
       ]
     },
     {
@@ -728,7 +760,9 @@
         "oprah",
         "telenovela",
         "medical",
-        "hospital"
+        "hospital",
+        "eastenders",
+        "stories by amc"
       ]
     },
     {
@@ -789,7 +823,9 @@
         "roadshow",
         "chip & jo",
         "dine",
-        "mecum"
+        "mecum",
+        "wine watches",
+        "fifth gear"
       ]
     },
     {
@@ -831,7 +867,8 @@
         "leave it to beaver",
         "wagon train",
         "bonanza",
-        "cheyenne"
+        "cheyenne",
+        "flashback"
       ]
     }
   ]

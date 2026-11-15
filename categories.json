@@ -4,6 +4,7 @@
     "Local",
     "News",
     "Government",
+    "Community TV",
     "Weather",
     "Sports",
     "Movies",
@@ -23,11 +24,14 @@
     "Relaxation",
     "Religious",
     "Spanish",
+    "Culture & Heritage",
     "Shopping",
     "Entertainment"
   ],
   "default_group": "Entertainment",
-  "overrides": {},
+  "overrides": {
+    "jubilee": "Entertainment"
+  },
   "rules": [
     {
       "group": "Local",
@@ -60,7 +64,32 @@
         "canela",
         "latv!",
         "knino",
-        "filamtv"
+        "filamtv",
+        "noticias",
+        "azteca",
+        "buen viaje",
+        "en alerta",
+        "barça",
+        "barca 24",
+        "cuando los",
+        "emoción",
+        "emocion",
+        "jorge ramos",
+        "latinus",
+        "mi raza",
+        "todo familia",
+        "vas o no",
+        "venevisi",
+        "única tv",
+        "unica tv",
+        "reino infantil",
+        "minuto para ganar",
+        "misterios",
+        "novelisima",
+        "novelísima",
+        "atres",
+        "deportes",
+        "canal "
       ]
     },
     {
@@ -101,7 +130,8 @@
         "psalm",
         "sacred",
         "spiritual",
-        "inspiration"
+        "inspiration",
+        "byu"
       ]
     },
     {
@@ -120,7 +150,9 @@
         "pyramid",
         "card sharks",
         "hollywood squares",
-        "buzzr"
+        "buzzr",
+        "quiz show",
+        "celebrity name game"
       ]
     },
     {
@@ -156,7 +188,13 @@
         "junior",
         "jr!",
         "preschool",
-        "family"
+        "family",
+        "beyblade",
+        "rev and roll",
+        "rainbow ruby",
+        "camp spoopy",
+        "123go",
+        "life with derek"
       ]
     },
     {
@@ -169,7 +207,12 @@
         "manga",
         "twitch",
         "animat",
-        "adult swim"
+        "adult swim",
+        "fgteev",
+        "ishowspeed",
+        "candyjar",
+        "joysauce",
+        "dungeon tv"
       ]
     },
     {
@@ -199,6 +242,27 @@
       ]
     },
     {
+      "group": "Community TV",
+      "keywords": [
+        "access ",
+        "accessvision",
+        "community",
+        "can tv",
+        "akaku",
+        "olelo",
+        "batv",
+        "bhtv",
+        "midpen",
+        "cmap",
+        "cerritos",
+        "berks",
+        "media center",
+        "public channel",
+        "public tv",
+        "community access"
+      ]
+    },
+    {
       "group": "News",
       "keywords": [
         "news",
@@ -223,7 +287,8 @@
         "nhk world",
         "wion",
         "rt!",
-        "cgtn"
+        "cgtn",
+        "merit street"
       ]
     },
     {
@@ -264,7 +329,18 @@
         "stadium",
         "espn",
         "fubo sports",
-        "dazn"
+        "dazn",
+        "big ten",
+        "sec network",
+        "acc network",
+        "accdn",
+        "pac-12",
+        "cornhole",
+        "bassmaster",
+        "american gladiators",
+        "watch aew",
+        "aew!",
+        "extrema"
       ]
     },
     {
@@ -300,7 +376,8 @@
         "scenic",
         "yule log",
         "lofi",
-        "lo-fi"
+        "lo-fi",
+        "sanctuary"
       ]
     },
     {
@@ -330,7 +407,49 @@
         "songs",
         "opera",
         "circle!",
-        "fuse!"
+        "fuse!",
+        "def jam",
+        "revolt"
+      ]
+    },
+    {
+      "group": "Culture & Heritage",
+      "keywords": [
+        "culture!",
+        "heritage",
+        "diaspora",
+        "italia",
+        "rai world",
+        "mediaset",
+        "armenia",
+        "hmong",
+        "amasian",
+        "asian culture",
+        "kajou",
+        "k-content",
+        "korean",
+        "hindi",
+        "bollywood",
+        "punjabi",
+        "arabic",
+        "russian",
+        "persian",
+        "mandarin",
+        "cantonese",
+        "vietnamese",
+        "filipino",
+        "tagalog",
+        "telugu",
+        "tamil",
+        "haitian",
+        "filam",
+        "afroland",
+        "365blk",
+        "allblk",
+        "blackpix",
+        "bet!",
+        "bounce",
+        "fox soul"
       ]
     },
     {
@@ -360,7 +479,11 @@
         "perry mason",
         "midsomer",
         "justice central",
-        "justice"
+        "justice",
+        "judge",
+        "nash bridges",
+        "reelz",
+        "caught in providence"
       ]
     },
     {
@@ -382,7 +505,8 @@
         "cult movie",
         "grit!",
         "hi-yah",
-        "asiancrush"
+        "asiancrush",
+        "haunt"
       ]
     },
     {
@@ -404,7 +528,11 @@
         "outer limits",
         "battlestar",
         "firefly",
-        "comet!"
+        "comet!",
+        "dark matter",
+        "walking dead",
+        "mutant x",
+        "asylum"
       ]
     },
     {
@@ -439,7 +567,11 @@
         "college",
         "classroom",
         "lecture",
-        "tutorial"
+        "tutorial",
+        "real wild",
+        "environment",
+        "earthday",
+        "beyond belief"
       ]
     },
     {
@@ -468,7 +600,14 @@
         "teen mom",
         "90 day",
         "are you the one",
-        "too hot"
+        "too hot",
+        "bravo!",
+        "we tv",
+        "weddings",
+        "fear factor",
+        "masked singer",
+        "nosey",
+        "name game"
       ]
     },
     {
@@ -501,7 +640,13 @@
         "blooper",
         "prank",
         "wild 'n out",
-        "wild n out"
+        "wild n out",
+        "graham norton",
+        "portlandia",
+        "alf!",
+        "are we there yet",
+        "weeds",
+        "nurse jackie"
       ]
     },
     {
@@ -574,7 +719,16 @@
         "this old house",
         "painting",
         "joy of",
-        "bark tv"
+        "bark tv",
+        "pursuit channel",
+        "good eats",
+        "gordon ramsay",
+        "cesar",
+        "pack leader",
+        "awe!",
+        "doctors!",
+        "antiques",
+        "roadshow"
       ]
     },
     {

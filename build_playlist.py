@@ -68,6 +68,17 @@ def fetch(url, timeout=30):
     return fetch_bytes(url, timeout).decode("utf-8", errors="replace")
 
 
+def split_extinf(line):
+    """Split '#EXTINF:-1 attrs...,Name' at the first comma that is not inside quotes."""
+    in_q = False
+    for i, ch in enumerate(line):
+        if ch == '"':
+            in_q = not in_q
+        elif ch == "," and not in_q:
+            return line[:i], line[i + 1:]
+    return line, ""
+
+
 def parse_m3u(text, source, priority):
     """Return (channels, epg_urls) from M3U text."""
     channels, epg_urls, cur = [], [], None
@@ -83,7 +94,7 @@ def parse_m3u(text, source, priority):
                         epg_urls.append(u.strip())
             continue
         if line.startswith("#EXTINF"):
-            head, _, name = line.partition(",")
+            head, name = split_extinf(line)
             cur = {
                 "attrs": dict(ATTR_RE.findall(head)),
                 "name": name.strip(),
@@ -91,6 +102,13 @@ def parse_m3u(text, source, priority):
                 "source": source,
                 "priority": priority,
             }
+            # Keep per-channel request headers so streams that need them still play
+            ua = cur["attrs"].get("http-user-agent")
+            if ua:
+                cur["opts"].append(f"#EXTVLCOPT:http-user-agent={ua}")
+            ref = cur["attrs"].get("http-referrer") or cur["attrs"].get("http-referer")
+            if ref:
+                cur["opts"].append(f"#EXTVLCOPT:http-referrer={ref}")
         elif line.startswith("#"):
             if cur is not None:
                 cur["opts"].append(line)  # e.g. #EXTVLCOPT user-agent lines

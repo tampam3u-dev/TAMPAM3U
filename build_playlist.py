@@ -33,18 +33,29 @@ ATTR_RE = re.compile(r'([\w-]+)="([^"]*)"')
 # Heuristic: US call signs like KABC, WXYZ-TV, KTLA 5
 CALLSIGN_RE = re.compile(r"\b[KW][A-Z]{2,3}(?:-?(?:TV|DT))?\b")
 
-GROUP_KEYWORDS = [
-    ("Local", ["local now", "newson", "local news"]),
-    ("News", ["news", "cnn", "msnbc", "nbc", "abc", "cbs", "fox", "weather", "newsmax", "cbsn", "bloomberg", "cheddar", "reuters"]),
-    ("Sports", ["sport", "nfl", "nba", "mlb", "nhl", "golf", "fifa", "soccer", "racing", "ufc", "wwe", "poker"]),
-    ("Kids", ["kids", "cartoon", "nick", "baby", "toon", "anime", "sesame", "pbs kids"]),
-    ("Movies", ["movie", "film", "cinema", "horror", "western", "action", "thriller", "romance"]),
-    ("Music", ["music", "mtv", "vevo", "radio", "concert", "karaoke"]),
-]
-# First channel number in each group (blocks of 1000 so groups never overflow)
-GROUP_BASE = {"Local": 1000, "News": 2000, "Sports": 3000, "Movies": 4000,
-              "Kids": 5000, "Music": 6000, "Entertainment": 7000}
-OTHER_BASE = 8000
+CATS = {"order": [], "default_group": "Entertainment", "overrides": {}, "rules": []}
+# Words that look like US call signs (K***/W***) but are not stations
+NOT_CALLSIGNS = {"KIDS", "KING", "KONG", "KUNG", "KORE", "KICK", "KIND", "KOOL", "KIDZ", "KNOW",
+                 "WWE", "WILD", "WORK", "WEEK", "WEST", "WINE", "WIRE", "WISH", "WIN", "WAR", "WAY",
+                 "WEB", "WOW", "WORLD", "WEAT", "WELL", "WITH", "WILL", "WOOD", "WORD"}
+NETWORK_RE = re.compile(r"\b(ABC|NBC|CBS|FOX|CW|PBS|ION|MYNETWORK|MY NETWORK|MYTV|TELEMUNDO|UNIVISION|UNIMAS|IND)\b")
+
+
+def load_categories(path):
+    global CATS
+    try:
+        CATS = json.load(open(path, encoding="utf-8"))
+    except FileNotFoundError:
+        sys.exit(f"ERROR: {path} not found. It must sit next to build_playlist.py.")
+    for rule in CATS["rules"]:
+        parts = []
+        for kw in rule["keywords"]:
+            kw = kw.lower()
+            if kw.endswith("!"):
+                parts.append(r"(?<![a-z0-9])" + re.escape(kw[:-1]) + r"(?![a-z0-9])")
+            else:
+                parts.append(r"(?<![a-z0-9])" + re.escape(kw))
+        rule["_re"] = re.compile("|".join(parts)) if parts else None
 
 
 def fetch_bytes(url, timeout=120):
@@ -90,18 +101,30 @@ def parse_m3u(text, source, priority):
     return channels, epg_urls
 
 
+def is_local_station(ch):
+    """US station call sign (KABC, WXYZ-TV) on a network affiliate or an iptv-org channel."""
+    name = ch["name"]
+    for m in CALLSIGN_RE.finditer(name):
+        tok = re.sub(r"-?(TV|DT)$", "", m.group())
+        if tok in NOT_CALLSIGNS:
+            continue
+        if NETWORK_RE.search(name) or ch["source"].lower().startswith("iptv-org"):
+            return True
+    return False
+
+
 def classify(ch):
     name = ch["name"]
-    src_group = ch["attrs"].get("group-title", "")
-    hay = f"{name} {src_group}".lower()
-    for group, words in GROUP_KEYWORDS:
-        if any(w in hay for w in words):
-            if group == "News" and CALLSIGN_RE.search(name):
-                return "Local"
-            return group
-    if CALLSIGN_RE.search(name):
+    over = CATS["overrides"].get(name.lower())
+    if over:
+        return over
+    if is_local_station(ch):
         return "Local"
-    return src_group.title() if src_group else "Entertainment"
+    hay = f"{name} {ch['attrs'].get('group-title', '')}".lower()
+    for rule in CATS["rules"]:
+        if rule["_re"] and rule["_re"].search(hay):
+            return rule["group"]
+    return CATS["default_group"]
 
 
 def norm_name(name):
@@ -136,10 +159,11 @@ def chan_key(c):
 
 
 def group_base(group):
-    if group in GROUP_BASE:
-        return GROUP_BASE[group]
-    # Unknown groups get a deterministic block from 8000 up
-    return OTHER_BASE + 1000 * (zlib.crc32(group.encode()) % 20)
+    """Each group gets its own block of 1000 numbers, in the order set in categories.json."""
+    order = CATS["order"]
+    if group in order:
+        return (order.index(group) + 1) * 1000
+    return (len(order) + 1 + zlib.crc32(group.encode()) % 20) * 1000
 
 
 def load_numbers(path):
@@ -261,11 +285,37 @@ def write_report(channels, prog_ids, path, sample=15):
     print(f"Guide report: {ok} of {total} channels have listings -> {path}")
 
 
+def write_category_report(channels, path, sample=40):
+    """Write category_report.md: channels per group and what ended up unsorted."""
+    counts = {}
+    for c in channels:
+        counts[c["group"]] = counts.get(c["group"], 0) + 1
+    order = CATS["order"]
+    names = sorted(counts, key=lambda g: order.index(g) if g in order else 999)
+    lines = ["# Category report", "", f"Generated {date.today()}. {len(channels)} channels.", "",
+             "| Group | Channels |", "|---|---|"]
+    lines += [f"| {g} | {counts[g]} |" for g in names]
+    default = CATS["default_group"]
+    left = [c for c in channels if c["group"] == default]
+    if left:
+        src = {}
+        for c in left:
+            k = c["attrs"].get("group-title", "") or "(none)"
+            src[k] = src.get(k, 0) + 1
+        top = sorted(src.items(), key=lambda kv: -kv[1])[:20]
+        lines += ["", f"## Still in {default}", "", "Source categories: " + ", ".join(f"{k} ({v})" for k, v in top), "",
+                  f"First {sample} names: " + ", ".join(c["name"] for c in left[:sample])]
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"Category report -> {path}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="sources.json")
     ap.add_argument("--out", default="tampam3u.m3u")
     ap.add_argument("--numbers", default="channel_numbers.json")
+    ap.add_argument("--categories", default="categories.json")
     ap.add_argument("--renumber", action="store_true", help="ignore saved numbers and renumber every channel")
     ap.add_argument("--no-check", action="store_true")
     ap.add_argument("--no-epg", action="store_true")
@@ -273,6 +323,7 @@ def main():
     args = ap.parse_args()
 
     cfg = json.load(open(args.config))
+    load_categories(args.categories)
     all_ch, epg_urls = [], []
     for s in cfg["sources"]:
         try:
@@ -310,6 +361,7 @@ def main():
     assign_numbers(merged, store, date.today(), cfg.get("retain_days", 90))
     save_numbers(args.numbers, store)
     merged.sort(key=lambda c: c["chno"])
+    write_category_report(merged, "category_report.md")
 
     epg_public = cfg.get("epg_public_url", "")
     with open(args.out, "w", encoding="utf-8") as f:

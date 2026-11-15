@@ -22,6 +22,30 @@ class GuideTests(unittest.TestCase):
             self.assertEqual(channels, {"station.id"})
             self.assertEqual(programmes, {"station.id"})
 
+    def test_alias_copies_verified_schedule_to_playlist_id(self):
+        source = b'''<tv><channel id="ESPN.HD.us2"><display-name>ESPN HD</display-name></channel>
+          <programme channel="ESPN.HD.us2" start="20261115120000 +0000" stop="20261115130000 +0000"><title>SportsCenter</title></programme></tv>'''
+        with tempfile.TemporaryDirectory() as tmp, patch.object(builder, "fetch_bytes_cached", return_value=source):
+            output = str(Path(tmp) / "guide.xml.gz")
+            _, programmes = builder.build_epg(["mock://national"], {"ESPN.us@HD"}, output,
+                                              {"ESPN.us@HD": "ESPN"},
+                                              {"ESPN.us@HD": "ESPN.HD.us2"})
+            root = ET.parse(gzip.open(output, "rb")).getroot()
+        self.assertEqual(programmes, {"ESPN.us@HD"})
+        self.assertEqual([p.get("channel") for p in root.findall("programme")], ["ESPN.us@HD"])
+        self.assertEqual(root.find("programme/title").text, "SportsCenter")
+        self.assertEqual(root.find("channel").get("id"), "ESPN.us@HD")
+
+    def test_alias_can_reuse_another_playlist_channels_schedule(self):
+        source = b'''<tv><channel id="plex"><display-name>24 Hour Free Movies</display-name></channel>
+          <programme channel="plex" start="20261115120000 +0000" stop="20261115130000 +0000"><title>Movie</title></programme></tv>'''
+        with tempfile.TemporaryDirectory() as tmp, patch.object(builder, "fetch_bytes_cached", return_value=source):
+            path = str(Path(tmp) / "guide.xml.gz")
+            builder.build_epg(["mock://plex"], {"plex", "iptv-org"}, path,
+                              {"iptv-org": "24 Hour Free Movies"}, {"iptv-org": "plex"})
+            root = ET.parse(gzip.open(path)).getroot()
+        self.assertEqual({p.get("channel") for p in root.findall("programme")}, {"plex", "iptv-org"})
+
     def test_callsign_mapping_requires_real_programmes(self):
         source = b'''<tv><channel id="empty"><display-name>WFTV</display-name></channel>
             <channel id="working"><display-name>WFTV</display-name></channel>

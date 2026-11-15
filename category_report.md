@@ -4,16 +4,16 @@ Generated 2026-11-15. 2330 channels.
 
 | Group | Channels |
 |---|---|
-| Local | 165 |
-| News | 131 |
-| Government | 69 |
+| Local | 164 |
+| News | 135 |
+| Government | 68 |
 | Community TV | 50 |
 | Weather | 10 |
 | Sports | 171 |
 | Movies | 214 |
 | Holiday | 19 |
 | Classic TV | 32 |
-| Comedy | 81 |
+| Comedy | 80 |
 | Drama | 26 |
 | Crime & Mystery | 100 |
 | Reality | 102 |
@@ -26,7 +26,7 @@ Generated 2026-11-15. 2330 channels.
 | Music | 101 |
 | Relaxation | 22 |
 | Religious | 115 |
-| Spanish | 198 |
+| Spanish | 197 |
 | Culture & Heritage | 69 |
 | Shopping | 20 |
 | Entertainment | 141 |

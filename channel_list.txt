@@ -9,7 +9,6 @@ number | group | name | source
 1007 | Local | ABC KRGV-TV (720p) | iptv-org US
 1008 | Local | ABC KSTP-TV (1080p) | iptv-org US
 1009 | Local | ABC KXXV (720p) | iptv-org US
-1010 | Local | ABC WBBJ-TV (432p) | iptv-org US
 1011 | Local | ABC WBRZ-TV (480p) | iptv-org US
 1012 | Local | ABC WDIO-DT (1080p) | iptv-org US
 1013 | Local | ABC WFTV (720p) | iptv-org US
@@ -256,8 +255,9 @@ number | group | name | source
 2089 | News | News of the World Arabic (720p) | iptv-org US
 2090 | News | News of the World USA (1080p) | iptv-org US
 2092 | News | News12 Westchester (1080p) [Geo-blocked] | iptv-org US
+2093 | News | News12+ Connecticut (1080p) [Geo-blocked] | iptv-org US
+2094 | News | News12+ Hudson Valley (1080p) [Geo-blocked] | iptv-org US
 2095 | News | News12+ Long Island (1080p) [Geo-blocked] | iptv-org US
-2096 | News | News12+ New Jersey (1080p) [Geo-blocked] | iptv-org US
 2097 | News | Newsmax 2 (1080p) | iptv-org US
 2098 | News | Newsmax TV (720p) | iptv-org US
 2099 | News | Newsmax2 | Pluto TV
@@ -295,6 +295,9 @@ number | group | name | source
 2132 | News | Yahoo Finance | Samsung TV Plus
 2133 | News | Yahoo! Finance (1080p) | iptv-org US
 2134 | News | The Young Turks (720p) | iptv-org US
+2135 | News | News12 Brooklyn (720p) [Geo-blocked] | iptv-org US
+2136 | News | News12 Bronx (1080p) [Geo-blocked] | iptv-org US
+2137 | News | News12+ New York (1080p) [Geo-blocked] | iptv-org US
 3000 | Government | AccessVision Channel 17 (720p) | iptv-org US
 3001 | Government | ACTV (United States) (720p) | iptv-org US
 3002 | Government | ATL 26 | iptv-org US
@@ -322,7 +325,6 @@ number | group | name | source
 3024 | Government | Denver 8 TV (720p) | iptv-org US
 3025 | Government | DerryTV 17 (720p) | iptv-org US
 3026 | Government | District of Columbia Network (1080p) | iptv-org US
-3027 | Government | Fernandina Beach Channel (720p) [Not 24/7] | iptv-org US
 3028 | Government | FGTV (United States) | iptv-org US
 3029 | Government | Gillette Public Access Television Channel 189 | iptv-org US
 3030 | Government | Gillette Public Access Television Channel 190 | iptv-org US
@@ -916,7 +918,6 @@ number | group | name | source
 10054 | Comedy | National Lampoon | Samsung TV Plus
 10055 | Comedy | NBC Comedy Vault (1080p) | iptv-org US
 10057 | Comedy | Penn & Teller: Fool Us (CW) | Pluto TV
-10059 | Comedy | People Are Awesome (1080p) | iptv-org US
 10060 | Comedy | Portlandia | Samsung TV Plus
 10061 | Comedy | Portlandia (1080p) | iptv-org US
 10062 | Comedy | Quirky AF | Pluto TV
@@ -2036,7 +2037,6 @@ number | group | name | source
 23132 | Spanish | Nick en Español | Samsung TV Plus
 23133 | Spanish | Nickelodeon en español | Pluto TV
 23134 | Spanish | Noticias Telemundo Ahora | Samsung TV Plus
-23135 | Spanish | Novelas de Siempre | Plex
 23136 | Spanish | Novelas Turcas | Samsung TV Plus
 23138 | Spanish | Novelisima (1080p) | iptv-org US
 23139 | Spanish | Novelísima | Roku Channel
@@ -2280,9 +2280,9 @@ number | group | name | source
 26098 | Entertainment | Mr. Bean | Plex
 26099 | Entertainment | MTC | iptv-org US
 26100 | Entertainment | Murdoch Mysteries | Plex
+26101 | Entertainment | Mysteria | Plex
 26102 | Entertainment | NAT TV (1080p) | iptv-org US
 26103 | Entertainment | Naturaleza | Plex
-26104 | Entertainment | Naturaleza Salvaje | Plex
 26105 | Entertainment | NBCLX (1080p) | iptv-org US
 26106 | Entertainment | NCTV79 (1080p) | iptv-org US
 26107 | Entertainment | NEW KFOOD | Plex

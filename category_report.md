@@ -1,37 +1,37 @@
 # Category report
 
-Generated 2026-11-15. 2258 channels.
+Generated 2026-11-15. 2152 channels.
 
 | Group | Channels |
 |---|---|
-| Local | 162 |
-| News | 135 |
-| Government | 68 |
+| Local | 161 |
+| News | 128 |
+| Government | 69 |
 | Community TV | 50 |
 | Weather | 10 |
-| Sports | 169 |
-| Movies | 204 |
-| Holiday | 18 |
-| Classic TV | 31 |
-| Comedy | 83 |
-| Drama | 25 |
-| Crime & Mystery | 100 |
-| Reality | 101 |
-| Sci-Fi & Fantasy | 35 |
-| Documentary | 112 |
-| Lifestyle | 145 |
-| Game Shows | 35 |
-| Kids & Family | 122 |
-| Anime & Gaming | 44 |
-| Music | 97 |
+| Sports | 164 |
+| Movies | 191 |
+| Holiday | 17 |
+| Classic TV | 28 |
+| Comedy | 81 |
+| Drama | 21 |
+| Crime & Mystery | 94 |
+| Reality | 97 |
+| Sci-Fi & Fantasy | 30 |
+| Documentary | 107 |
+| Lifestyle | 136 |
+| Game Shows | 33 |
+| Kids & Family | 119 |
+| Anime & Gaming | 43 |
+| Music | 92 |
 | Relaxation | 22 |
-| Religious | 114 |
-| Spanish | 195 |
-| Culture & Heritage | 69 |
-| Shopping | 20 |
-| Entertainment | 92 |
+| Religious | 115 |
+| Spanish | 176 |
+| Culture & Heritage | 67 |
+| Shopping | 19 |
+| Entertainment | 82 |
 
-## Still in Entertainment (92)
+## Still in Entertainment (82)
 
 ### General (37)
 AFTV (1080p), AMGA TV (720p) [Not 24/7], AMP 1 (720p), Binge (720p), GunAz TV, NAT TV (1080p), NCTV79 (1080p), NTD TV (1080p), NTD TV West (720p), Pacific Island Network (1080p), Pars TV, Payam-e-Afghan TV (480p) [Not 24/7], PCT Channel 26 (720p), PCT Channel 27 (720p), PCTV 28 (480p), PhillyCAM (720p), RTH-TV1 (1080p), RTVi US (1080p), RVTV Grants Pass (720p), RVTV Prime (720p), RVTV Voices (720p), Scottsdale Channel 11, SFGovTV2 (720p), SGTN-49 (720p), Shout! Factory TV (1080p) ...
@@ -39,14 +39,14 @@ AFTV (1080p), AMGA TV (720p) [Not 24/7], AMP 1 (720p), Binge (720p), GunAz TV, N
 ### Entertainment (22)
 30A Sidewalks (720p), 30A Television Channel (720p), Ace TV (480p), E! (United States) East (1080p), Electric Now (720p), ES.TV (720p), ET, Galxy TV (720p), GlobalWorldTV (720p), Great Entertainment Television (720p), Heartland (720p), ION, ION Plus (1080p), ION TV (720p), Lone Star (1080p), NBCLX (1080p), Roar (1080p), Tin TV (720p), TMZ (720p), Xplore TV (1080p), Young Hollywood (720p), YTA TV (720p)
 
-### United States (13)
-AddictaTV, Aliwko, Alternative, Bizaar, BOOT, Cindie TV, Combat War Channel, Creator Television, Dove, Entertains, FEVA TV, FUEL TV, A Touch of Frost
-
 ### Undefined (11)
 CC-TV (720p), Celebrity Scene TV (720p), CTV (United States) (480p), Fast TV (720p), Homeful US (1080p), MTC, PixL TV (720p), RTN (United States), RVTV (1080p), The Walk TV, Window TV (720p)
 
 ### TV & Entertainment (6)
 TVOAI Channel, The Ed Sullivan Show, Highway To Heaven, Murdoch Mysteries, Ryan Trahan, Unspeakable
+
+### United States (3)
+AddictaTV, Alternative, A Touch of Frost
 
 ### Series (1)
 Instant Saga

@@ -46,6 +46,31 @@ class GuideTests(unittest.TestCase):
             root = ET.parse(gzip.open(path)).getroot()
         self.assertEqual({p.get("channel") for p in root.findall("programme")}, {"plex", "iptv-org"})
 
+    def test_automatic_reuse_of_unique_exact_name(self):
+        source = b'''<tv><channel id="plex"><display-name>Movie Channel</display-name></channel>
+          <programme channel="plex" start="20261115120000 +0000" stop="20261115130000 +0000"><title>Movie</title></programme></tv>'''
+        with tempfile.TemporaryDirectory() as tmp, patch.object(builder, "fetch_bytes_cached", return_value=source):
+            path = str(Path(tmp) / "guide.xml.gz")
+            _, covered = builder.build_epg(["mock://plex"], {"plex", "other"}, path,
+                                           {"plex": "Movie Channel", "other": "Movie Channel (720p)"})
+            root = ET.parse(gzip.open(path)).getroot()
+        self.assertEqual(covered, {"plex", "other"})
+        self.assertEqual({p.get("channel") for p in root.findall("programme")}, {"plex", "other"})
+
+    def test_automatic_matching_rejects_ambiguous_sources(self):
+        source = b'''<tv><programme channel="a" start="20261115120000 +0000" stop="20261115130000 +0000"><title>A</title></programme>
+          <programme channel="b" start="20261115120000 +0000" stop="20261115130000 +0000"><title>B</title></programme></tv>'''
+        with tempfile.TemporaryDirectory() as tmp, patch.object(builder, "fetch_bytes_cached", return_value=source):
+            path = str(Path(tmp) / "guide.xml.gz")
+            _, covered = builder.build_epg(["mock://guide"], {"a", "b", "missing"}, path,
+                                           {"a": "Movie Channel", "b": "Movie Channel",
+                                            "missing": "Movie Channel (720p)"})
+        self.assertEqual(covered, {"a", "b"})
+
+    def test_automatic_matching_preserves_distinct_feed_names(self):
+        self.assertNotEqual(builder.guide_match_name("Cinemax West (720p)"),
+                            builder.guide_match_name("Cinemax East (720p)"))
+
     def test_callsign_mapping_requires_real_programmes(self):
         source = b'''<tv><channel id="empty"><display-name>WFTV</display-name></channel>
             <channel id="working"><display-name>WFTV</display-name></channel>

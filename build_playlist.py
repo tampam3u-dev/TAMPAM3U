@@ -161,6 +161,14 @@ def norm_name(name):
     return re.sub(r"[^a-z0-9]", "", n)
 
 
+def guide_match_name(name):
+    """Conservative name key: remove quality labels, not network or region."""
+    name = name.strip().casefold()
+    name = re.sub(r"(?:\s*\[[^]]+\])+$", "", name)
+    name = re.sub(r"\s*\((?:\d{3,4}p|4k|hd|sd)\)$", "", name)
+    return re.sub(r"[^a-z0-9]", "", name)
+
+
 def sort_name(name):
     """Sort key that ignores leading 'The', 'A', 'An' (so 'The Weather Channel' sorts under W)."""
     n = re.sub(r"^(the|an|a)\s+", "", name.strip().lower())
@@ -326,6 +334,38 @@ def build_epg(epg_urls, wanted_ids, out_path, channel_names=None, epg_aliases=No
             print(f"Guide {url}: kept {kept_ch} channels, {kept_pr} programmes")
         except Exception as e:
             print(f"WARNING: could not use guide {url}: {e}", file=sys.stderr)
+    # Source playlists frequently duplicate the very same FAST channel under
+    # different tvg-ids. Reuse an existing schedule only if its cleaned name
+    # identifies exactly ONE scheduled source. Never guess from a fuzzy name.
+    names = channel_names or {}
+    scheduled_by_name = {}
+    for cid in prog_channels:
+        key = guide_match_name(names.get(cid, ""))
+        if len(key) >= 8:
+            scheduled_by_name.setdefault(key, set()).add(cid)
+    programmes_by_channel = {}
+    for programme in root.findall("programme"):
+        programmes_by_channel.setdefault(programme.get("channel"), []).append(programme)
+    copied_channels = 0
+    copied_programmes = 0
+    for cid in sorted(wanted_ids - prog_channels):
+        key = guide_match_name(names.get(cid, ""))
+        matching = scheduled_by_name.get(key, set()) if len(key) >= 8 else set()
+        if len(matching) != 1:
+            continue
+        source_id = next(iter(matching))
+        for programme in programmes_by_channel[source_id]:
+            alias = copy.deepcopy(programme)
+            alias.set("channel", cid)
+            root.append(alias)
+            prog_channels.add(cid)
+            seen_progs.add((cid, alias.get("start")))
+            if (alias.get("start") or "")[:14] <= now < (alias.get("stop") or "")[:14]:
+                on_now.add(cid)
+            copied_programmes += 1
+        copied_channels += 1
+    print(f"Exact-name guide reuse: filled {copied_channels} channels with "
+          f"{copied_programmes} programme entries")
     # XMLTV clients require a <channel> definition for every programme id.
     # Some upstream guides publish programmes without the matching definition.
     for cid in sorted(prog_channels - seen_channels):

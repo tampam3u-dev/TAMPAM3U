@@ -1,14 +1,14 @@
 # Guide match report
 
-Generated 2026-11-14. 1298 of 2346 channels have guide listings.
+Generated 2026-11-15. 1283 of 2325 channels have guide listings.
 
 | Source | Channels | With listings | No guide ID | ID but no listings |
 |---|---|---|---|---|
-| iptv-org US | 1048 | 0 | 0 | 1048 |
-| Pluto TV | 455 | 455 | 0 | 0 |
+| iptv-org US | 1042 | 0 | 0 | 1042 |
+| Pluto TV | 454 | 454 | 0 | 0 |
 | Tubi | 32 | 32 | 0 | 0 |
 | Roku Channel | 104 | 104 | 0 | 0 |
-| Plex | 249 | 249 | 0 | 0 |
+| Plex | 235 | 235 | 0 | 0 |
 | Samsung TV Plus | 458 | 458 | 0 | 0 |
 
 ## iptv-org US

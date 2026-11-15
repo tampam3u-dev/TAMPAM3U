@@ -105,6 +105,26 @@ class GuideTests(unittest.TestCase):
             selected = builder.merge_channels(channels, workers=1)
         self.assertEqual([c["url"] for c in selected], ["working"])
 
+    def test_exclude_exact_id_name_and_entire_group(self):
+        channels = [
+            {"name": "Movie One", "group": "Movies", "attrs": {"tvg-id": "movie1"}},
+            {"name": "News One", "group": "News", "attrs": {"tvg-id": "news1"}},
+            {"name": "News Two", "group": "News", "attrs": {"tvg-id": "news2"}},
+            {"name": "Sports One", "group": "Sports", "attrs": {"tvg-id": "sports1"}},
+        ]
+        kept, removed = builder.apply_exclusions(channels, {
+            "channel_ids": ["sports1"], "channel_names": ["news one"], "groups": ["MOVIES"]})
+        self.assertEqual([c["name"] for c in kept], ["News Two"])
+        self.assertEqual(len(removed), 3)
+
+    def test_exclusions_accept_original_and_mapped_guide_id(self):
+        channel = {"name": "Station", "group": "Local", "original_tvg_id": "old",
+                   "attrs": {"tvg-id": "mapped"}}
+        for channel_id in ["old", "mapped"]:
+            kept, excluded = builder.apply_exclusions([channel], {"channel_ids": [channel_id]})
+            self.assertFalse(kept)
+            self.assertEqual(excluded, [channel])
+
     def test_report_calls_out_remaining_duplicate_guide_ids(self):
         channels = [{"name": n, "source": "Test", "attrs": {"tvg-id": "shared"}}
                     for n in ["First", "Second"]]

@@ -9,6 +9,7 @@ on:
       - sources.json
       - categories.json
       - favorites.json
+      - excluded_channels.json
       - .github/workflows/update.yml
   schedule:
     - cron: "0 9 * * *"   # daily, 09:00 UTC

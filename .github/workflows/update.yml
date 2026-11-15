@@ -1,6 +1,15 @@
 name: Update playlist
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - build_playlist.py
+      - test_guide.py
+      - sources.json
+      - categories.json
+      - favorites.json
+      - .github/workflows/update.yml
   schedule:
     - cron: "0 9 * * *"   # daily, 09:00 UTC
   workflow_dispatch:       # lets you run it manually from the Actions tab

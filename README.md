@@ -46,7 +46,7 @@ display show titles in its time slots; the builder does not invent show names.
 - If a high-priority stream fails its availability check, the builder tries a lower-priority duplicate before removing that channel. A stream can still be blocked by region, DRM, or Kodi codec support even if its URL passes the check.
 - `minimum_channels` and `minimum_epg_channels` in `sources.json` stop a failed upstream refresh from publishing an almost-empty playlist or guide. Lower them only if you intentionally reduce the source list substantially.
 - `channel_numbers.json` remembers each channel's number so it never changes. Channels missing for 90 days are forgotten and their numbers freed (`retain_days` in `sources.json`). To renumber everything on purpose (for example after changing how channels are sorted), run the workflow manually from the Actions tab and tick **renumber**. This breaks saved Kodi favorites.
-- `.github/workflows/update.yml` runs the script daily and commits the playlist, guide and number file. You can also run it manually from the Actions tab.
+- `.github/workflows/update.yml` runs the script daily, and automatically after changes to guide code, source settings, categories, favorites, or the workflow. It commits the playlist, guide and number file. You can also run it manually from the Actions tab.
 
 Run locally: `python build_playlist.py` (add `--no-check` to skip link testing).
 

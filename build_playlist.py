@@ -64,6 +64,16 @@ def fetch_bytes(url, timeout=120):
         return r.read()
 
 
+_BYTES_CACHE = {}
+
+
+def fetch_bytes_cached(url, timeout=300):
+    """Download once per run (the local-station guide is read twice)."""
+    if url not in _BYTES_CACHE:
+        _BYTES_CACHE[url] = fetch_bytes(url, timeout)
+    return _BYTES_CACHE[url]
+
+
 def fetch(url, timeout=30):
     return fetch_bytes(url, timeout).decode("utf-8", errors="replace")
 
@@ -123,7 +133,7 @@ def is_local_station(ch):
     """US station call sign (KABC, WXYZ-TV) on a network affiliate or an iptv-org channel."""
     name = ch["name"]
     for m in CALLSIGN_RE.finditer(name):
-        tok = re.sub(r"-?(TV|DT)$", "", m.group())
+        tok = re.sub(r"-(TV|DT)$", "", m.group())
         if tok in NOT_CALLSIGNS:
             continue
         if NETWORK_RE.search(name) or ch["source"].lower().startswith("iptv-org"):
@@ -240,7 +250,7 @@ def build_epg(epg_urls, wanted_ids, out_path):
     seen_channels, seen_progs, prog_channels = set(), set(), set()
     for url in epg_urls:
         try:
-            data = fetch_bytes(url, timeout=300)
+            data = fetch_bytes_cached(url, 300)
             if data[:2] == b"\x1f\x8b":
                 data = gzip.decompress(data)
             kept_ch = kept_pr = 0
@@ -303,7 +313,99 @@ def write_report(channels, prog_ids, path, sample=15):
     print(f"Guide report: {ok} of {total} channels have listings -> {path}")
 
 
-def write_category_report(channels, path, sample=40):
+# Call signs inside guide channel ids / display names, e.g. KABC.us, WFTV-DT, "ABC 7 (KABC)"
+GUIDE_CALLSIGN_RE = re.compile(r"(?<![A-Z0-9])([KW][A-Z]{2,3})(?:-?(?:TV|DT|HD|LD|CD|LP))?(?![A-Z0-9])")
+
+
+def map_callsigns(channels, urls):
+    """Give iptv-org local stations a guide id by matching call signs (KAAL, WFTV...)
+    against the channels of a US local-stations guide. Returns (mapped, total)."""
+    index = {}
+    for url in urls:
+        try:
+            data = fetch_bytes_cached(url, 300)
+            if data[:2] == b"\x1f\x8b":
+                data = gzip.decompress(data)
+            for _, el in ET.iterparse(io.BytesIO(data), events=("end",)):
+                if el.tag == "channel":
+                    texts = [el.get("id") or ""] + [(d.text or "") for d in el.findall("display-name")]
+                    for t in texts:
+                        for m in GUIDE_CALLSIGN_RE.finditer(t.upper()):
+                            if m.group(1) not in NOT_CALLSIGNS:
+                                index.setdefault(m.group(1), el.get("id"))
+                    el.clear()
+                elif el.tag == "programme":
+                    el.clear()
+        except Exception as e:
+            print(f"WARNING: could not read local guide {url}: {e}", file=sys.stderr)
+    mapped = total = 0
+    for c in channels:
+        if not c["source"].lower().startswith("iptv-org"):
+            continue
+        signs = []
+        for m in CALLSIGN_RE.finditer(c["name"]):
+            tok = re.sub(r"-(TV|DT)$", "", m.group())
+            if tok not in NOT_CALLSIGNS:
+                signs.append(tok)
+        if not signs:
+            continue
+        total += 1
+        for tok in signs:
+            if tok in index:
+                c["attrs"]["tvg-id"] = index[tok]
+                mapped += 1
+                break
+    print(f"Local guide: matched {mapped} of {total} local stations by call sign ({len(index)} call signs in guide)")
+    return mapped, total
+
+
+def fav_key(name):
+    """Name with (quality) and [tags] removed, lowercased, for matching favorites."""
+    n = re.sub(r"\([^)]*\)|\[[^\]]*\]", " ", name.lower())
+    return re.sub(r"\s+", " ", n).strip()
+
+
+def load_favorites(path):
+    try:
+        return json.load(open(path, encoding="utf-8"))
+    except FileNotFoundError:
+        return {"channels": [], "keep_category_group": True}
+
+
+def apply_favorites(channels, fav):
+    """Pin favorites to numbers 1, 2, 3... in listed order. Returns names not found."""
+    keep = fav.get("keep_category_group", True)
+    used, missing, n = set(), [], 0
+    for raw in fav.get("channels", []):
+        prefix = raw.endswith("*")
+        key = fav_key(raw[:-1] if prefix else raw)
+        found = [c for c in channels if id(c) not in used and
+                 (fav_key(c["name"]).startswith(key) if prefix else fav_key(c["name"]) == key)]
+        if prefix:
+            found.sort(key=lambda c: sort_name(c["name"]))
+        if not found:
+            missing.append(raw)
+            continue
+        for c in found:
+            n += 1
+            c["chno"] = n
+            c["favorite"] = True
+            c["out_group"] = f"Favorites;{c['group']}" if keep else "Favorites"
+            used.add(id(c))
+    return missing
+
+
+def write_channel_list(channels, path):
+    """channel_list.txt: every channel with its number, so you can search and pick favorites."""
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("number | group | name | source\n")
+        for c in sorted(channels, key=lambda c: c["chno"]):
+            star = " *FAV*" if c.get("favorite") else ""
+            f.write(f'{c["chno"]} | {c["group"]} | {c["name"]}{star} | {c["source"]}\n')
+    print(f"Channel list -> {path}")
+
+
+def write_category_report(channels, path, fav_missing=None, sample=40):
     """Write category_report.md: channels per group and what ended up unsorted."""
     counts = {}
     for c in channels:
@@ -313,6 +415,11 @@ def write_category_report(channels, path, sample=40):
     lines = ["# Category report", "", f"Generated {date.today()}. {len(channels)} channels.", "",
              "| Group | Channels |", "|---|---|"]
     lines += [f"| {g} | {counts[g]} |" for g in names]
+    favs = sum(1 for c in channels if c.get("favorite"))
+    if favs or fav_missing:
+        lines += ["", f"Favorites pinned: {favs}."]
+        if fav_missing:
+            lines.append("Favorites not found (check spelling against channel_list.txt): " + ", ".join(fav_missing))
     default = CATS["default_group"]
     left = [c for c in channels if c["group"] == default]
     if left:
@@ -335,6 +442,7 @@ def main():
     ap.add_argument("--out", default="tampam3u.m3u")
     ap.add_argument("--numbers", default="channel_numbers.json")
     ap.add_argument("--categories", default="categories.json")
+    ap.add_argument("--favorites", default="favorites.json")
     ap.add_argument("--renumber", action="store_true", help="ignore saved numbers and renumber every channel")
     ap.add_argument("--no-check", action="store_true")
     ap.add_argument("--no-epg", action="store_true")
@@ -379,8 +487,17 @@ def main():
     store = {} if args.renumber else load_numbers(args.numbers)
     assign_numbers(merged, store, date.today(), cfg.get("retain_days", 90))
     save_numbers(args.numbers, store)
+    fav_missing = apply_favorites(merged, load_favorites(args.favorites))
+    if fav_missing:
+        print("WARNING: favorites not found: " + ", ".join(fav_missing), file=sys.stderr)
     merged.sort(key=lambda c: c["chno"])
-    write_category_report(merged, "category_report.md")
+    write_category_report(merged, "category_report.md", fav_missing)
+    write_channel_list(merged, "channel_list.txt")
+
+    callsign_urls = cfg.get("callsign_epg", [])
+    if callsign_urls and not args.no_epg:
+        map_callsigns(merged, callsign_urls)
+        epg_urls.extend(u for u in callsign_urls if u not in epg_urls)
 
     epg_public = cfg.get("epg_public_url", "")
     with open(args.out, "w", encoding="utf-8") as f:
@@ -394,7 +511,7 @@ def main():
             parts.append(f'tvg-chno="{c["chno"]}"')
             if a.get("tvg-logo"):
                 parts.append(f'tvg-logo="{a["tvg-logo"]}"')
-            parts.append(f'group-title="{c["group"]}"')
+            parts.append(f'group-title="{c.get("out_group", c["group"])}"')
             f.write(f'#EXTINF:{" ".join(parts)},{c["name"]}\n')
             for o in c["opts"]:
                 f.write(o + "\n")

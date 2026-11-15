@@ -1,0 +1,5 @@
+{
+  "_help": "Pinned favorites get channel numbers 1, 2, 3... in the order listed here and appear in a 'Favorites' group at the top. Write each name as it appears in channel_list.txt (quality tags like (1080p) are ignored, capitals do not matter). End a name with * to pin every channel that starts with it, e.g. \"ESPN*\". Set keep_category_group to false to show favorites only in the Favorites group.",
+  "keep_category_group": true,
+  "channels": []
+}

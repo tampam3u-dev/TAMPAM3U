@@ -40,6 +40,9 @@ display show titles in its time slots; the builder does not invent show names.
 - `categories.json` holds the category rules and group order. Edit it on GitHub to move channels around: add keywords to a rule, or pin one channel under `overrides`. `category_report.md` shows how many channels landed in each group and what is still unsorted.
 - Local stations (the iptv-org ones) get their guide by matching call signs such as KAAL or WFTV against the US local-stations guide listed under `callsign_epg` in `sources.json`. The Actions log line "Local guide: matched X of Y" shows how many matched.
 - `guide_report.md` is rewritten each run and shows how many channels per source have guide listings.
+- The report also lists conflicting guide IDs. Local-station matching assigns a callsign-based guide ID to at most one station feed, instead of showing the main station's schedule on every branded subchannel. Other channels retain their original IDs unless a matching guide exists.
+- If a high-priority stream fails its availability check, the builder tries a lower-priority duplicate before removing that channel. A stream can still be blocked by region, DRM, or Kodi codec support even if its URL passes the check.
+- `minimum_channels` and `minimum_epg_channels` in `sources.json` stop a failed upstream refresh from publishing an almost-empty playlist or guide. Lower them only if you intentionally reduce the source list substantially.
 - `channel_numbers.json` remembers each channel's number so it never changes. Channels missing for 90 days are forgotten and their numbers freed (`retain_days` in `sources.json`). To renumber everything on purpose (for example after changing how channels are sorted), run the workflow manually from the Actions tab and tick **renumber**. This breaks saved Kodi favorites.
 - `.github/workflows/update.yml` runs the script daily and commits the playlist, guide and number file. You can also run it manually from the Actions tab.
 

@@ -21,6 +21,7 @@ number | group | name | source
 1019 | Local | ACE Country Radio KPVM-LD (480p) | iptv-org US
 1020 | Local | Ace TV KCKS-LD (720p) | iptv-org US
 1021 | Local | AWE Plus KPVM-LD (484p) | iptv-org US
+1022 | Local | CBS 6 Richmond WTVR | Tubi
 1023 | Local | CBS KIRO-TV (1080p) | iptv-org US
 1024 | Local | CBS KWTV-DT (720p) [Not 24/7] | iptv-org US
 1025 | Local | CBS KZTV (720p) | iptv-org US
@@ -138,7 +139,6 @@ number | group | name | source
 1138 | Local | UniMas WXTV-DT (1080p) | iptv-org US
 1139 | Local | Univision KMEX-DT (1080p) [Geo-blocked] | iptv-org US
 1140 | Local | Univision WLTV-DT (720p) | iptv-org US
-1141 | Local | Very Boston WCVB | Tubi
 1142 | Local | WATC-DT 57.1 (1080p) | iptv-org US
 1143 | Local | WATC-DT 57.2 (720p) | iptv-org US
 1144 | Local | Watch it KID! (720p) | iptv-org US
@@ -160,6 +160,9 @@ number | group | name | source
 1162 | Local | WVVH-CD 18.1 (720p) | iptv-org US
 1163 | Local | WWON-TV Channel 48 | iptv-org US
 1164 | Local | Youtoo America KVVB-LD (1080p) [Not 24/7] | iptv-org US
+1165 | Local | KBRI-8 (720p) | iptv-org US
+1166 | Local | KCAT (1080p) | iptv-org US
+1167 | Local | KFON TV (720p) [Geo-blocked] | iptv-org US
 2000 | News | 30A Georgia Hollywood Review (720p) | iptv-org US
 2001 | News | 30A Investment Pitch (720p) | iptv-org US
 2002 | News | 30A Lionel Nation | iptv-org US
@@ -244,12 +247,14 @@ number | group | name | source
 2083 | News | LiveNOW from FOX | Pluto TV
 2084 | News | LiveNOW from FOX (1080p) | iptv-org US
 2085 | News | Merit Street (1080p) | iptv-org US
+2086 | News | MS NOW (432p) | iptv-org US
 2087 | News | NBC News NOW | Pluto TV
 2088 | News | NBC News NOW (1080p) | iptv-org US
 2089 | News | News of the World Arabic (720p) | iptv-org US
 2090 | News | News of the World USA (1080p) | iptv-org US
+2091 | News | News12 Conneticut [Geo-blocked] | iptv-org US
 2092 | News | News12 Westchester (1080p) [Geo-blocked] | iptv-org US
-2093 | News | News12+ Connecticut (1080p) [Geo-blocked] | iptv-org US
+2094 | News | News12+ Hudson Valley (1080p) [Geo-blocked] | iptv-org US
 2095 | News | News12+ Long Island (1080p) [Geo-blocked] | iptv-org US
 2096 | News | News12+ New Jersey (1080p) [Geo-blocked] | iptv-org US
 2097 | News | Newsmax 2 (1080p) | iptv-org US
@@ -292,11 +297,10 @@ number | group | name | source
 2135 | News | News12 Brooklyn (720p) [Geo-blocked] | iptv-org US
 2136 | News | News12 Bronx (1080p) [Geo-blocked] | iptv-org US
 2137 | News | News12+ New York (1080p) [Geo-blocked] | iptv-org US
-2138 | News | News12 Hudson Valley (1080p) [Geo-blocked] | iptv-org US
 2140 | News | theGrio | Tubi
+2142 | News | BX Inform (1080p) | iptv-org US
 3000 | Government | AccessVision Channel 17 (720p) | iptv-org US
 3001 | Government | ACTV (United States) (720p) | iptv-org US
-3002 | Government | ATL 26 | iptv-org US
 3003 | Government | ATXN1 (1080p) | iptv-org US
 3004 | Government | ATXN2 (1080p) | iptv-org US
 3005 | Government | BATV Government Channel (1080p) | iptv-org US
@@ -321,10 +325,7 @@ number | group | name | source
 3024 | Government | Denver 8 TV (720p) | iptv-org US
 3025 | Government | DerryTV 17 (720p) | iptv-org US
 3026 | Government | District of Columbia Network (1080p) | iptv-org US
-3028 | Government | FGTV (United States) | iptv-org US
-3029 | Government | Gillette Public Access Television Channel 189 | iptv-org US
-3030 | Government | Gillette Public Access Television Channel 190 | iptv-org US
-3031 | Government | Gillette Public Access Television Channel 192 | iptv-org US
+3027 | Government | Fernandina Beach Channel (720p) [Not 24/7] | iptv-org US
 3032 | Government | Glendale 11 AZ (360p) | iptv-org US
 3033 | Government | Government TV 16 (720p) | iptv-org US
 3034 | Government | Hillsborough TV (360p) | iptv-org US
@@ -362,6 +363,24 @@ number | group | name | source
 3066 | Government | Yuma Channel 72 (1080p) | iptv-org US
 3067 | Government | Yuma Channel 73 (1080p) | iptv-org US
 3068 | Government | Yuma77 | iptv-org US
+3069 | Government | BATV Government TV (480p) | iptv-org US
+3070 | Government | BIG Civic Channel | iptv-org US
+3071 | Government | BPTV (360p) | iptv-org US
+3072 | Government | Capital City Connection Montgomery [Not 24/7] | iptv-org US
+3073 | Government | CGTV (720p) | iptv-org US
+3074 | Government | Channel 18 GAC | iptv-org US
+3075 | Government | City of Monroe Government Channel | iptv-org US
+3076 | Government | CityTV Whittier (720p) | iptv-org US
+3077 | Government | CMAC 3 (720p) | iptv-org US
+3078 | Government | Contra Costa TV [Geo-blocked] | iptv-org US
+3079 | Government | COStv | iptv-org US
+3080 | Government | Detroit Channel 10 | iptv-org US
+3081 | Government | G10TV (1080p) | iptv-org US
+3082 | Government | Glendale TV (720p) [Geo-blocked] | iptv-org US
+3083 | Government | HCTV Government Channel | iptv-org US
+3084 | Government | HCTV Public Access Channel | iptv-org US
+3085 | Government | Monroe Community Media Public Access Channel | iptv-org US
+3086 | Government | Thornton 8 (1080p) | iptv-org US
 4000 | Community TV | Access Humboldt (1080p) | iptv-org US
 4001 | Community TV | Access Nashua (720p) | iptv-org US
 4002 | Community TV | AccessVision Channel 16 (720p) | iptv-org US
@@ -412,6 +431,33 @@ number | group | name | source
 4047 | Community TV | TVSA Public Channel (720p) | iptv-org US
 4048 | Community TV | WeHoTV (360p) | iptv-org US
 4049 | Community TV | White Plains Community Media (360p) | iptv-org US
+4050 | Community TV | Access 19 | iptv-org US
+4051 | Community TV | Access 4 PAC | iptv-org US
+4052 | Community TV | Access Tuolumne (720p) | iptv-org US
+4053 | Community TV | BATV (480p) | iptv-org US
+4054 | Community TV | BIG Community Channel | iptv-org US
+4055 | Community TV | CCX1 (1080p) | iptv-org US
+4056 | Community TV | City of Fairfield Channel 26 (720p) [Geo-blocked] | iptv-org US
+4057 | Community TV | City of Loveland TV (1080p) | iptv-org US
+4058 | Community TV | CMAC 1 (720p) | iptv-org US
+4059 | Community TV | CMAC 2 (720p) | iptv-org US
+4060 | Community TV | CommunityTV Channel 189 (1080p) [Geo-blocked] | iptv-org US
+4061 | Community TV | Concord TV (720p) | iptv-org US
+4062 | Community TV | CreaTV Channel 15 (720p) | iptv-org US
+4063 | Community TV | CreaTV Channel 27 (720p) | iptv-org US
+4064 | Community TV | CreaTV Channel 28 (720p) | iptv-org US
+4065 | Community TV | CreaTV Channel 30 (720p) | iptv-org US
+4066 | Community TV | Detroit Channel 21 | iptv-org US
+4067 | Community TV | Detroit Channel 22 | iptv-org US
+4068 | Community TV | Detroit Channel 68 | iptv-org US
+4069 | Community TV | FC Public Media (1080p) | iptv-org US
+4070 | Community TV | FCTV (1080p) | iptv-org US
+4071 | Community TV | HBTV (720p) | iptv-org US
+4072 | Community TV | HCTV Educational Access Channel | iptv-org US
+4073 | Community TV | Monroe Community Media Education Channel | iptv-org US
+4074 | Community TV | Montgomery Channel | iptv-org US
+4075 | Community TV | Temecula TV (1080p) | iptv-org US
+4076 | Community TV | Willamette Falls Media Center | iptv-org US
 5000 | Weather | AccuWeather NOW (1080p) | iptv-org US
 5001 | Weather | FOX Weather | Pluto TV
 5002 | Weather | Fox Weather (1080p) | iptv-org US
@@ -432,6 +478,7 @@ number | group | name | source
 6007 | Sports | AWSN | Pluto TV
 6008 | Sports | AYM Sports 3 USA | Roku Channel
 6009 | Sports | Bassmaster | Plex
+6010 | Sports | beIN Sports USA (576p) | iptv-org US
 6011 | Sports | beIN SPORTS XTRA | Samsung TV Plus
 6012 | Sports | beIN SPORTS XTRA (1080p) | iptv-org US
 6013 | Sports | BEK Sports West (720p) | iptv-org US
@@ -477,6 +524,7 @@ number | group | name | source
 6053 | Sports | FOX Sports | Pluto TV
 6054 | Sports | Fox Sports 1 (720p) | iptv-org US
 6055 | Sports | FOX Sports on Tubi | Tubi
+6056 | Sports | FTF Sports | Plex
 6057 | Sports | FTF Sports (720p) | iptv-org US
 6058 | Sports | fubo Sports Network | Samsung TV Plus
 6059 | Sports | Fubo Sports Network (1080p) | iptv-org US
@@ -528,6 +576,7 @@ number | group | name | source
 6113 | Sports | Pursuit UP | Samsung TV Plus
 6114 | Sports | RACER Select | Samsung TV Plus
 6116 | Sports | Rally TV (1080p) | iptv-org US
+6117 | Sports | Real Madrid | Tubi
 6118 | Sports | Red Bull TV | Roku Channel
 6119 | Sports | Red Bull TV US (1080p) | iptv-org US
 6120 | Sports | REV'N Action (720p) [Geo-blocked] | iptv-org US
@@ -883,6 +932,7 @@ number | group | name | source
 10038 | Comedy | The Graham Norton Show (1080p) | iptv-org US
 10039 | Comedy | Hit Sitcoms | Pluto TV
 10040 | Comedy | Hot Ones | Samsung TV Plus
+10041 | Comedy | The Johnny Carson Show | Tubi
 10042 | Comedy | Just for Laughs GAGS | Samsung TV Plus
 10043 | Comedy | Just for Laughs Gags (1080p) | iptv-org US
 10044 | Comedy | Laff More | Samsung TV Plus
@@ -1035,7 +1085,6 @@ number | group | name | source
 12087 | Crime & Mystery | Runtime Sangre Fría | Roku Channel
 12088 | Crime & Mystery | See It Now Studios True Crime | Pluto TV
 12090 | Crime & Mystery | Silent Witness & New Tricks | Samsung TV Plus
-12091 | Crime & Mystery | Silent Witness and New Tricks | Tubi
 12092 | Crime & Mystery | To Catch a Smuggler | Samsung TV Plus
 12095 | Crime & Mystery | TruBlu | Samsung TV Plus
 12096 | Crime & Mystery | TruBlu Crime Channel | Roku Channel
@@ -1072,6 +1121,7 @@ number | group | name | source
 13017 | Reality | Bondi Rescue | Samsung TV Plus
 13018 | Reality | Bravo (720p) | iptv-org US
 13019 | Reality | Bravo Vault | Pluto TV
+13020 | Reality | The Breakfast Club on iHeartRadio | Tubi
 13021 | Reality | Bring It! | Samsung TV Plus
 13022 | Reality | Car Chase | Pluto TV
 13023 | Reality | Caught on Tape | Samsung TV Plus
@@ -1300,6 +1350,9 @@ number | group | name | source
 15119 | Documentary | The Yorkshire Vet | Samsung TV Plus
 15120 | Documentary | Naturaleza Salvaje | Roku Channel
 15121 | Documentary | Paws & Claws | Tubi
+15122 | Documentary | HKTV (1080p) [Geo-blocked] | iptv-org US
+15123 | Documentary | LA36 (1080p) | iptv-org US
+15124 | Documentary | St Lucie Public Schools | iptv-org US
 16000 | Lifestyle | 30A Darcizzle Offshore (720p) | iptv-org US
 16001 | Lifestyle | 30A Luxe Life Discovered (720p) | iptv-org US
 16002 | Lifestyle | 30A We Love Cars (720p) | iptv-org US
@@ -1372,6 +1425,7 @@ number | group | name | source
 16070 | Lifestyle | Food Network (United States) (720p) | iptv-org US
 16071 | Lifestyle | Fun Roads (720p) | iptv-org US
 16073 | Lifestyle | Global Fashion Channel (1080p) | iptv-org US
+16074 | Lifestyle | Gordon Ramsay | Tubi
 16075 | Lifestyle | GoTraveler (720p) [Geo-blocked] | iptv-org US
 16076 | Lifestyle | Gusto TV | Samsung TV Plus
 16078 | Lifestyle | Home Cooking by Food Network | Pluto TV
@@ -1515,7 +1569,6 @@ number | group | name | source
 18033 | Kids & Family | Family Unscripted | Plex
 18034 | Kids & Family | FilmRise Kids | Plex
 18035 | Kids & Family | Fluffy TV | Plex
-18036 | Kids & Family | FMH Kids (720p) | iptv-org US
 18037 | Kids & Family | Garfield and Friends | Pluto TV
 18039 | Kids & Family | Go Go Gadget! | Pluto TV
 18040 | Kids & Family | Grizzy and the Lemmings | Samsung TV Plus
@@ -1674,7 +1727,6 @@ number | group | name | source
 20030 | Music | LIVExLIVE (1080p) | iptv-org US
 20031 | Music | Love & Hip Hop | Pluto TV
 20032 | Music | MBC America (1080p) | iptv-org US
-20033 | Music | Metaleitor TV | iptv-org US
 20035 | Music | MTV (United States) (1080p) | iptv-org US
 20036 | Music | MTV Biggest Pop | Pluto TV
 20037 | Music | MTV Live (720p) | iptv-org US
@@ -1877,6 +1929,7 @@ number | group | name | source
 22112 | Religious | World Harvest TV (360p) | iptv-org US
 22113 | Religious | XITE Christian Hits | Samsung TV Plus
 22114 | Religious | XITE Gospel | Pluto TV
+22116 | Religious | BX Inspire (720p) | iptv-org US
 23000 | Spanish | 3ABN Latino (1080p) | iptv-org US
 23001 | Spanish | 40 y 20 | Samsung TV Plus
 23002 | Spanish | Acapulco Shore | Pluto TV
@@ -1968,6 +2021,7 @@ number | group | name | source
 23088 | Spanish | FreeTV Asia | Roku Channel
 23089 | Spanish | FreeTV Banda | Plex
 23090 | Spanish | FreeTV Clásico | Plex
+23091 | Spanish | FreeTV Drama | Plex
 23092 | Spanish | FreeTV Estelar | Samsung TV Plus
 23093 | Spanish | FreeTV Hits | Plex
 23094 | Spanish | FreeTV Horror | Plex
@@ -2140,6 +2194,8 @@ number | group | name | source
 24068 | Culture & Heritage | Urban TV + Movies | Samsung TV Plus
 24069 | Culture & Heritage | USA Today | Samsung TV Plus
 24070 | Culture & Heritage | VICE | Samsung TV Plus
+24071 | Culture & Heritage | BX Arts (720p) | iptv-org US
+24072 | Culture & Heritage | BX Culture (720p) | iptv-org US
 25000 | Shopping | 30A The Beach Show (720p) | iptv-org US
 25001 | Shopping | Deal or No Deal (1080p) | iptv-org US
 25002 | Shopping | Deal Zone | Samsung TV Plus
@@ -2167,7 +2223,6 @@ number | group | name | source
 26004 | Entertainment | AFTV (1080p) | iptv-org US
 26005 | Entertainment | Aliwko | Plex
 26006 | Entertainment | Alternative | Plex
-26007 | Entertainment | AMGA TV (720p) [Not 24/7] | iptv-org US
 26008 | Entertainment | AMP 1 (720p) | iptv-org US
 26010 | Entertainment | Binge (720p) | iptv-org US
 26011 | Entertainment | Bizaar | Plex
@@ -2189,9 +2244,6 @@ number | group | name | source
 26032 | Entertainment | FrightFlix | Plex
 26033 | Entertainment | FUEL TV | Plex
 26034 | Entertainment | Galxy TV (720p) | iptv-org US
-26035 | Entertainment | GameTVGO | Plex
-26036 | Entertainment | Gata Salvaje | Plex
-26037 | Entertainment | GET | Plex
 26042 | Entertainment | GlobalWorldTV (720p) | iptv-org US
 26048 | Entertainment | Great Entertainment Television (720p) | iptv-org US
 26052 | Entertainment | GunAz TV | iptv-org US
@@ -2256,3 +2308,10 @@ number | group | name | source
 26238 | Entertainment | Murdoch Mysteries | Roku Channel
 26239 | Entertainment | Ryan Trahan | Roku Channel
 26240 | Entertainment | Unspeakable | Roku Channel
+26241 | Entertainment | AuroraTV (720p) | iptv-org US
+26242 | Entertainment | BX Omni (720p) | iptv-org US
+26243 | Entertainment | SCVTV (1080p) | iptv-org US
+26244 | Entertainment | SF Commons 29 (480p) | iptv-org US
+26245 | Entertainment | SF Commons 76 (480p) | iptv-org US
+26246 | Entertainment | TBCN (480p) | iptv-org US
+26247 | Entertainment | VSCTV (1080p) | iptv-org US

@@ -1,32 +1,32 @@
 # Category report
 
-Generated 2026-11-15. 2260 channels.
+Generated 2026-11-15. 2258 channels.
 
 | Group | Channels |
 |---|---|
-| Local | 161 |
-| News | 133 |
+| Local | 162 |
+| News | 135 |
 | Government | 68 |
-| Community TV | 46 |
+| Community TV | 50 |
 | Weather | 10 |
-| Sports | 173 |
+| Sports | 169 |
 | Movies | 204 |
 | Holiday | 18 |
 | Classic TV | 31 |
 | Comedy | 83 |
 | Drama | 25 |
-| Crime & Mystery | 103 |
+| Crime & Mystery | 100 |
 | Reality | 101 |
 | Sci-Fi & Fantasy | 35 |
 | Documentary | 112 |
-| Lifestyle | 146 |
+| Lifestyle | 145 |
 | Game Shows | 35 |
 | Kids & Family | 122 |
 | Anime & Gaming | 44 |
 | Music | 97 |
 | Relaxation | 22 |
 | Religious | 114 |
-| Spanish | 196 |
+| Spanish | 195 |
 | Culture & Heritage | 69 |
 | Shopping | 20 |
 | Entertainment | 92 |
@@ -40,7 +40,7 @@ AFTV (1080p), AMGA TV (720p) [Not 24/7], AMP 1 (720p), Binge (720p), GunAz TV, N
 30A Sidewalks (720p), 30A Television Channel (720p), Ace TV (480p), E! (United States) East (1080p), Electric Now (720p), ES.TV (720p), ET, Galxy TV (720p), GlobalWorldTV (720p), Great Entertainment Television (720p), Heartland (720p), ION, ION Plus (1080p), ION TV (720p), Lone Star (1080p), NBCLX (1080p), Roar (1080p), Tin TV (720p), TMZ (720p), Xplore TV (1080p), Young Hollywood (720p), YTA TV (720p)
 
 ### United States (13)
-AddictaTV, Aliwko, Alternative, Bizaar, BOOT, Cindie TV, Combat War Channel, Creator Television, Dove, Entertains, FEVA TV, FrightFlix, A Touch of Frost
+AddictaTV, Aliwko, Alternative, Bizaar, BOOT, Cindie TV, Combat War Channel, Creator Television, Dove, Entertains, FEVA TV, FUEL TV, A Touch of Frost
 
 ### Undefined (11)
 CC-TV (720p), Celebrity Scene TV (720p), CTV (United States) (480p), Fast TV (720p), Homeful US (1080p), MTC, PixL TV (720p), RTN (United States), RVTV (1080p), The Walk TV, Window TV (720p)

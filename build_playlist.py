@@ -180,6 +180,31 @@ def alive(ch, timeout=10):
         return False
 
 
+def merge_channels(all_channels, check_links=True, workers=32):
+    """Prefer the first *working* stream for a name, not the first dead one.
+
+    Source priorities still decide which playable duplicate wins. A failed
+    higher-priority stream must not hide a healthy lower-priority alternative.
+    """
+    ordered = sorted(all_channels, key=lambda c: c["priority"])
+    if check_links:
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            working = list(ex.map(alive, ordered))
+    else:
+        working = [True] * len(ordered)
+    seen_url, seen_name, merged = set(), set(), []
+    for c, ok in zip(ordered, working):
+        if not ok:
+            continue
+        key = norm_name(c["name"])
+        if c["url"] in seen_url or (key and key in seen_name):
+            continue
+        seen_url.add(c["url"])
+        seen_name.add(key)
+        merged.append(c)
+    return merged
+
+
 def chan_key(c):
     """Stable identity for a channel: its guide id, else its cleaned-up name."""
     tid = c["attrs"].get("tvg-id")
@@ -223,11 +248,24 @@ def assign_numbers(channels, store, today, retain_days):
     used_keys = set()
     new_count = 0
     for c in channels:
-        key = base_key = chan_key(c)
+        base_key = chan_key(c)
+        # Find the existing number by channel name if this tvg-id is shared.
+        # Otherwise changing source order can swap the #2/#3 assignments.
+        candidates = [base_key]
         n = 2
-        while key in used_keys:  # two channels sharing one id
-            key = f"{base_key}#{n}"
+        while f"{base_key}#{n}" in store:
+            candidates.append(f"{base_key}#{n}")
             n += 1
+        key = next((k for k in candidates if k not in used_keys and
+                    store.get(k, {}).get("name") == c["name"]), None)
+        if key is None:
+            key = next((k for k in candidates if k in store and k not in used_keys), None)
+        if key is None:
+            key = base_key
+            n = 2
+            while key in used_keys or key in store:
+                key = f"{base_key}#{n}"
+                n += 1
         used_keys.add(key)
         entry = store.get(key)
         if entry is None:
@@ -319,6 +357,16 @@ def write_report(channels, prog_ids, path, sample=15):
                 lines.append(f'No guide ID (first {sample}): ' + ", ".join(r["no_id"][:sample]))
             if r["no_listings"]:
                 lines.append(f'ID but no listings (first {sample}): ' + ", ".join(r["no_listings"][:sample]))
+    duplicate_ids = {}
+    for c in channels:
+        tid = c["attrs"].get("tvg-id")
+        if tid:
+            duplicate_ids.setdefault(tid, []).append(c["name"])
+    collisions = {tid: names for tid, names in duplicate_ids.items() if len(names) > 1}
+    lines += ["", "## Guide ID conflicts", "",
+              f"{len(collisions)} XMLTV IDs are assigned to multiple playlist channels."]
+    for tid, names in list(collisions.items())[:sample]:
+        lines.append(f"- `{tid}`: " + ", ".join(names))
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
     print(f"Guide report: {ok} of {total} channels have listings -> {path}")
@@ -326,6 +374,22 @@ def write_report(channels, prog_ids, path, sample=15):
 
 # Call signs inside guide channel ids / display names, e.g. KABC.us, WFTV-DT, "ABC 7 (KABC)"
 GUIDE_CALLSIGN_RE = re.compile(r"(?<![A-Z0-9])([KW][A-Z]{2,3})(?:-?(?:TV|DT|HD|LD|CD|LP))?(?![A-Z0-9])")
+
+
+def station_match_score(channel, sign):
+    """Prefer the station's primary feed over unrelated branded subchannels."""
+    name = channel["name"].upper().strip()
+    call = r"\b" + re.escape(sign) + r"(?:-(?:TV|DT|HD|LD|CD|LP))?\b"
+    score = 0
+    if re.match(call, name):
+        score += 100  # WATC-DT 57.1 rather than a named secondary network
+    if re.search(r"\b(?:ABC|NBC|CBS|FOX|CW|PBS)\b", name):
+        score += 50   # ABC WSOC-TV rather than WSOC Now
+    if re.search(call + r"\s+\d+\.1\b", name):
+        score += 20
+    if re.search(r"\b(?:NOW|PLUS|MOVIES|RADIO|GOLD)\b", name):
+        score -= 30
+    return score
 
 
 def map_callsigns(channels, urls):
@@ -352,6 +416,7 @@ def map_callsigns(channels, urls):
         except Exception as e:
             print(f"WARNING: could not read local guide {url}: {e}", file=sys.stderr)
     mapped = total = 0
+    proposed = {}
     for c in channels:
         if not c["source"].lower().startswith("iptv-org"):
             continue
@@ -366,10 +431,23 @@ def map_callsigns(channels, urls):
         for tok in signs:
             candidate = next((cid for cid in index.get(tok, []) if cid in scheduled_ids), None)
             if candidate:
-                c["attrs"]["tvg-id"] = candidate
-                mapped += 1
+                proposed.setdefault(candidate, []).append((c, station_match_score(c, tok)))
                 break
-    print(f"Local guide: matched {mapped} of {total} local stations by call sign ({len(index)} call signs in guide)")
+    collisions_avoided = 0
+    original_ids = {c["attrs"].get("tvg-id") for c in channels}
+    for cid, options in proposed.items():
+        if cid in original_ids:
+            collisions_avoided += len(options)
+            continue
+        # One schedule must never be assigned to multiple different channels.
+        # Prefer a clear primary feed and leave other feeds with their own IDs.
+        options.sort(key=lambda x: (-x[1], x[0]["name"].casefold()))
+        channel = options[0][0]
+        channel["attrs"]["tvg-id"] = cid
+        mapped += 1
+        collisions_avoided += len(options) - 1
+    print(f"Local guide: matched {mapped} of {total} local stations by call sign; "
+          f"avoided {collisions_avoided} shared-ID mappings ({len(index)} call signs in guide)")
     return mapped, total
 
 
@@ -477,23 +555,15 @@ def main():
     epg_urls.extend(cfg.get("extra_epg", []))
     epg_urls = list(dict.fromkeys(epg_urls))  # de-duplicate, keep order
 
-    # De-duplicate by URL, then by channel name (lowest priority number wins)
-    all_ch.sort(key=lambda c: c["priority"])
-    seen_url, seen_name, merged = set(), set(), []
-    for c in all_ch:
-        key = norm_name(c["name"])
-        if c["url"] in seen_url or (key and key in seen_name):
-            continue
-        seen_url.add(c["url"])
-        seen_name.add(key)
-        merged.append(c)
-    print(f"After de-duplication: {len(merged)}")
-
-    if not args.no_check:
-        with ThreadPoolExecutor(max_workers=args.workers) as ex:
-            ok = list(ex.map(alive, merged))
-        merged = [c for c, good in zip(merged, ok) if good]
-        print(f"After link check: {len(merged)}")
+    merged = merge_channels(all_ch, check_links=not args.no_check, workers=args.workers)
+    print(f"After link check and de-duplication: {len(merged)}")
+    # Do not publish a near-empty playlist because one upstream website or
+    # internet route temporarily failed. Explicit intentional removals can
+    # adjust the threshold in sources.json.
+    minimum = cfg.get("minimum_channels", 500)
+    if len(merged) < minimum:
+        sys.exit(f"ERROR: only {len(merged)} channels survived; minimum is {minimum}. "
+                 "Keeping the existing published playlist and guide unchanged.")
 
     for c in merged:
         c["group"] = classify(c)
@@ -536,6 +606,10 @@ def main():
         wanted = {c["attrs"]["tvg-id"] for c in merged if c["attrs"].get("tvg-id")}
         names = {c["attrs"]["tvg-id"]: c["name"] for c in merged if c["attrs"].get("tvg-id")}
         _, prog_ids = build_epg(epg_urls, wanted, cfg.get("epg_output", "epg.xml.gz"), names)
+        minimum_epg = cfg.get("minimum_epg_channels", 400)
+        if len(prog_ids) < minimum_epg:
+            sys.exit(f"ERROR: only {len(prog_ids)} guide IDs have programmes; "
+                     f"minimum is {minimum_epg}. Not publishing an empty guide.")
         write_report(merged, prog_ids, "guide_report.md")
 
 

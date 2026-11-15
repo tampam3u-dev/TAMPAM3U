@@ -1,5 +1,7 @@
 {
   "retain_days": 90,
+  "minimum_channels": 500,
+  "minimum_epg_channels": 400,
   "epg_output": "epg.xml.gz",
   "epg_public_url": "https://raw.githubusercontent.com/tampam3u-dev/TAMPAM3U/main/epg.xml.gz",
   "extra_epg": [

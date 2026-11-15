@@ -1,11 +1,11 @@
 # Category report
 
-Generated 2026-11-15. 2333 channels.
+Generated 2026-11-15. 2330 channels.
 
 | Group | Channels |
 |---|---|
 | Local | 165 |
-| News | 132 |
+| News | 131 |
 | Government | 69 |
 | Community TV | 50 |
 | Weather | 10 |
@@ -23,17 +23,17 @@ Generated 2026-11-15. 2333 channels.
 | Game Shows | 36 |
 | Kids & Family | 124 |
 | Anime & Gaming | 43 |
-| Music | 100 |
+| Music | 101 |
 | Relaxation | 22 |
 | Religious | 115 |
-| Spanish | 197 |
+| Spanish | 198 |
 | Culture & Heritage | 69 |
 | Shopping | 20 |
-| Entertainment | 145 |
+| Entertainment | 141 |
 
-## Still in Entertainment (145)
+## Still in Entertainment (141)
 
-### United States (72)
+### United States (68)
 AddictaTV, Aliwko, Alternative, Bizaar, BOOT, Cindie TV, Combat War Channel, Creator Television, Dove, Entertains, FEVA TV, FrightFlix, FUEL TV, GameTVGO, Gata Salvaje, GET, Get.Factual, Ghost Hunters Channel, Ghosts Are Real, Glewed TV, GLORY Kickboxing, Go Wild, GoTraveler, Great British Menu, Green Acres ...
 
 ### General (37)

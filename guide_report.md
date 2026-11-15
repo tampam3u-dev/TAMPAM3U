@@ -1,15 +1,15 @@
 # Guide match report
 
-Generated 2026-11-15. 1290 of 2333 channels have guide listings.
+Generated 2026-11-15. 1412 of 2330 channels have guide listings.
 
 | Source | Channels | With listings | No guide ID | ID but no listings |
 |---|---|---|---|---|
-| iptv-org US | 1043 | 0 | 0 | 1043 |
+| iptv-org US | 1043 | 125 | 0 | 918 |
 | Tubi | 30 | 30 | 0 | 0 |
 | Pluto TV | 454 | 454 | 0 | 0 |
 | Roku Channel | 104 | 104 | 0 | 0 |
-| Plex | 250 | 250 | 0 | 0 |
+| Plex | 247 | 247 | 0 | 0 |
 | Samsung TV Plus | 452 | 452 | 0 | 0 |
 
 ## iptv-org US
-ID but no listings (first 15): ABC KAAL (1080p) (ABC.us@KAAL), ABC KERO-TV (720p) (ABC.us@KEROTV), ABC KGTV (720p) (ABC.us@KGTV), ABC KGUN-TV (720p) (ABC.us@KGUNTV), ABC KITV (720p) (ABC.us@KITV), ABC KMGH-TV (720p) (ABC.us@KMGHTV), ABC KOAT-TV (720p) (ABC.us@KOATTV), ABC KRGV-TV (720p) (ABC.us@KRGVTV), ABC KSTP-TV (1080p) (ABC.us@KSTPTV), ABC KXXV (720p) (ABC.us@KXXV), ABC WBBJ-TV (432p) (ABC.us@WBBJTV), ABC WBRZ-TV (480p) (ABC.us@WBRZTV), ABC WDIO-DT (1080p) (ABC.us@WDIODT), ABC WFTV (720p) (ABC.us@WFTV), ABC WISN-TV (720p) (ABC.us@WISNTV)
+ID but no listings (first 15): Daystar TV WSLF-LD (720p) (DaystarTV.us@WSLFLD), KOCT Channel 18 (720p) (KOCTChannel18.us@SD), KOCT Channel 19 (720p) (KOCTChannel19.us@SD), PBS WEDQ (1080p) (PBS.us@WEDQ), Sony KAL Hindi (1080p) (SonyKALHindi.us@SD), Watch it KID! (720p) (WatchitKID.us@SD), WCETV Digital Channel 31.8 (WCETVDigitalChannel318.us@SD), WCOT (720p) (WCOT.us@SD), WHOH-TV (360p) (WHOHTV.us@SD), WLNG Radio (410p) [Not 24/7] (WLNGRadio.us@SD), WOX TV (1080p) (WOXTV.us@SD), WPS-TV (360p) (WPSTV.us@SD), WVCU-LP (1080p) (WVCULP.us@SD), WWON-TV Channel 48 (WWONTVChannel48.us@SD), Youtoo America KVVB-LD (1080p) [Not 24/7] (YoutooAmerica.us@KVVBLD)

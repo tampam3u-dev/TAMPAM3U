@@ -238,7 +238,6 @@ number | group | name | source
 2025 | News | Blaze Live | Pluto TV
 2026 | News | Bloomberg Originals | Samsung TV Plus
 2027 | News | Bloomberg Originals (1080p) | iptv-org US
-2028 | News | Bloomberg TV (1080p) | iptv-org US
 2029 | News | Bloomberg TV Live Event (720p) | iptv-org US
 2030 | News | Bloomberg TV Politics Live Event (720p) | iptv-org US
 2031 | News | Bloomberg TV+ | Pluto TV
@@ -268,6 +267,7 @@ number | group | name | source
 2056 | News | Cheddar News (1080p) | iptv-org US
 2057 | News | Cleveland 19 News Plus | Roku Channel
 2058 | News | CNN (720p) | iptv-org US
+2059 | News | CNN HD (720p) [Geo-blocked] | iptv-org US
 2060 | News | CNN HEADLINES | Pluto TV
 2061 | News | CNN Originals | Pluto TV
 2062 | News | CNN Originals (1080p) | iptv-org US
@@ -286,7 +286,6 @@ number | group | name | source
 2076 | News | FRANCE 24 | Plex
 2077 | News | Free Speech TV (720p) | iptv-org US
 2078 | News | The Hill | Samsung TV Plus
-2079 | News | HLN (720p) | iptv-org US
 2080 | News | HMI PROMZ NEWS (720p) | iptv-org US
 2081 | News | HollyWire (720p) | iptv-org US
 2082 | News | IraneFarda TV | iptv-org US
@@ -298,7 +297,7 @@ number | group | name | source
 2088 | News | NBC News NOW (1080p) | iptv-org US
 2089 | News | News of the World Arabic (720p) | iptv-org US
 2090 | News | News of the World USA (1080p) | iptv-org US
-2091 | News | News12 Conneticut [Geo-blocked] | iptv-org US
+2094 | News | News12+ Hudson Valley (1080p) [Geo-blocked] | iptv-org US
 2095 | News | News12+ Long Island (1080p) [Geo-blocked] | iptv-org US
 2097 | News | Newsmax 2 (1080p) | iptv-org US
 2098 | News | Newsmax TV (720p) | iptv-org US
@@ -307,7 +306,6 @@ number | group | name | source
 2101 | News | NTD TV English (1080p) | iptv-org US
 2102 | News | OAN Plus | Pluto TV
 2103 | News | OAN Plus (1080p) | iptv-org US
-2104 | News | One America News Network (720p) | iptv-org US
 2105 | News | Payvand TV (United States) (720p) | iptv-org US
 2106 | News | Real America's Voice | Samsung TV Plus
 2108 | News | Reuters TV (1080p) | iptv-org US
@@ -337,8 +335,6 @@ number | group | name | source
 2132 | News | Yahoo Finance | Samsung TV Plus
 2133 | News | Yahoo! Finance (1080p) | iptv-org US
 2134 | News | The Young Turks (720p) | iptv-org US
-2137 | News | News12+ New York (1080p) [Geo-blocked] | iptv-org US
-2139 | News | News12 New Jersey (1080p) [Geo-blocked] | iptv-org US
 2140 | News | theGrio | Tubi
 2143 | News | CBS News Miami | Pluto TV
 2144 | News | CNN Headlines (1080p) [Geo-blocked] | iptv-org US
@@ -348,12 +344,10 @@ number | group | name | source
 3003 | Government | ATXN1 (1080p) | iptv-org US
 3004 | Government | ATXN2 (1080p) | iptv-org US
 3005 | Government | BATV Government Channel (1080p) | iptv-org US
-3006 | Government | Brevard Government Access TV (720p) | iptv-org US
 3007 | Government | CFM TV Channel 98 (360p) | iptv-org US
 3008 | Government | Channel 10 (United States) (720p) | iptv-org US
 3009 | Government | City of Fort Pierce (720p) | iptv-org US
 3010 | Government | The City of Marina (720p) | iptv-org US
-3011 | Government | City of Pompano Beach (720p) | iptv-org US
 3012 | Government | City TV Channel 3/41 (360p) | iptv-org US
 3013 | Government | CityTV 20 Santa Monica (360p) [Not 24/7] | iptv-org US
 3014 | Government | CityTV San Diego (360p) | iptv-org US
@@ -363,7 +357,6 @@ number | group | name | source
 3018 | Government | CT-N Live Stream 2 (360p) [Not 24/7] | iptv-org US
 3019 | Government | CT-N TV Conneticut (720p) [Not 24/7] | iptv-org US
 3020 | Government | CVC Government (480p) | iptv-org US
-3021 | Government | Cypress Channel 36 (360p) | iptv-org US
 3022 | Government | DC Council Hearing Room 120 (1080p) | iptv-org US
 3023 | Government | DCC (1080p) | iptv-org US
 3024 | Government | Denver 8 TV (720p) | iptv-org US
@@ -382,27 +375,20 @@ number | group | name | source
 3037 | Government | Kern County TV (720p) | iptv-org US
 3038 | Government | Lake Havasu City 4 (360p) | iptv-org US
 3039 | Government | Leominster TV Government (720p) | iptv-org US
-3040 | Government | Lex TV (720p) | iptv-org US
 3041 | Government | LGTV (1080p) | iptv-org US
-3042 | Government | Martin County TV (720p) | iptv-org US
 3043 | Government | MBTV (720p) | iptv-org US
 3044 | Government | Midpen Media Center Channel 29 (720p) | iptv-org US
 3045 | Government | Monroe County TV (1080p) | iptv-org US
 3046 | Government | Natick Government Channel (720p) | iptv-org US
 3047 | Government | Natick Public Access Channel (720p) | iptv-org US
-3048 | Government | NMBTV (720p) | iptv-org US
 3049 | Government | Olelo 49 (720p) | iptv-org US
 3050 | Government | Olelo 54 (720p) | iptv-org US
 3051 | Government | Ontario Public Access Channel (360p) | iptv-org US
 3052 | Government | Orange Government Access TV (720p) | iptv-org US
 3053 | Government | PBC TV Channel 20 (720p) | iptv-org US
-3054 | Government | PCTV 26 (480p) | iptv-org US
 3055 | Government | The Peninsula Channel (720p) | iptv-org US
 3056 | Government | PHLgovTV (720p) | iptv-org US
-3057 | Government | PHXTV (720p) | iptv-org US
-3058 | Government | PSL TV (360p) | iptv-org US
 3059 | Government | RVTV Civic (720p) | iptv-org US
-3060 | Government | SFGovTV (720p) | iptv-org US
 3061 | Government | SMCTV Channel 23 (720p) | iptv-org US
 3062 | Government | SPTV (360p) | iptv-org US
 3063 | Government | TV4 (United States) (360p) | iptv-org US
@@ -488,7 +474,6 @@ number | group | name | source
 6013 | Sports | BEK Sports West (720p) | iptv-org US
 6014 | Sports | Bellator MMA | Pluto TV
 6015 | Sports | Big 12 Studios | Samsung TV Plus
-6016 | Sports | Big Ten Network (720p) | iptv-org US
 6017 | Sports | Billiard TV | Samsung TV Plus
 6018 | Sports | Billiard TV (1080p) [Geo-blocked] | iptv-org US
 6019 | Sports | Bowling TV | Plex
@@ -553,7 +538,6 @@ number | group | name | source
 6083 | Sports | NASCAR | Tubi
 6084 | Sports | NASCAR Channel | Samsung TV Plus
 6085 | Sports | The NBA Channel | Pluto TV
-6086 | Sports | NBA TV (720p) | iptv-org US
 6087 | Sports | NBC Sports NOW | Pluto TV
 6088 | Sports | NBC Sports NOW (1080p) | iptv-org US
 6089 | Sports | NESN Nation | Samsung TV Plus
@@ -588,7 +572,6 @@ number | group | name | source
 6121 | Sports | Right Now TV (720p) | iptv-org US
 6122 | Sports | Roku Sports Channel | Samsung TV Plus
 6123 | Sports | RugbyPass TV | Samsung TV Plus
-6124 | Sports | SEC Network (1080p) | iptv-org US
 6125 | Sports | Slopes TV (720p) | iptv-org US
 6126 | Sports | SLVR | Samsung TV Plus
 6130 | Sports | SportsGrid | Samsung TV Plus
@@ -638,7 +621,7 @@ number | group | name | source
 6180 | Sports | Xena | Roku Channel
 6181 | Sports | XFC TV (720p) | iptv-org US
 6182 | Sports | Yahoo! Sports Network | Samsung TV Plus
-6183 | Sports | Yes Network (720p) | iptv-org US
+6184 | Sports | FUEL TV | Roku Channel
 6185 | Sports | HBO Boxing | Tubi
 6186 | Sports | Pam Grier's Soul Flix | Roku Channel
 6187 | Sports | Swerve Combat | Roku Channel
@@ -677,9 +660,6 @@ number | group | name | source
 7028 | Movies | Charge! (1080p) | iptv-org US
 7029 | Movies | Cine de Horror | Plex
 7030 | Movies | Cine Sony (720p) | iptv-org US
-7031 | Movies | Cinemax (United States) West (720p) | iptv-org US
-7032 | Movies | Cinemax Classics (1080p) | iptv-org US
-7033 | Movies | Cinemax Hits (1080p) | iptv-org US
 7034 | Movies | CINEVAULT | Samsung TV Plus
 7035 | Movies | Cinevault Westerns (540p) [Geo-blocked] | iptv-org US
 7036 | Movies | CINEVAULT: Classics | Samsung TV Plus
@@ -727,7 +707,6 @@ number | group | name | source
 7078 | Movies | FilmRise Series Gratis | Plex
 7079 | Movies | FilmRise Western | Samsung TV Plus
 7080 | Movies | Flicks of Fury | Pluto TV
-7081 | Movies | Free Movies Plus | Plex
 7082 | Movies | FrightFlix (720p) | iptv-org US
 7083 | Movies | Genie K-Drama | Samsung TV Plus
 7084 | Movies | Genie K-Movie | Samsung TV Plus
@@ -747,7 +726,6 @@ number | group | name | source
 7100 | Movies | HerSphere by Lionsgate | Samsung TV Plus
 7102 | Movies | Hi-YAH! (1080p) | iptv-org US
 7103 | Movies | Horror by ALTER | Samsung TV Plus
-7105 | Movies | IFC (1080p) | iptv-org US
 7107 | Movies | ION Plus | Samsung TV Plus
 7108 | Movies | K-Drama+ | Samsung TV Plus
 7109 | Movies | Las Vegas | Samsung TV Plus
@@ -785,7 +763,6 @@ number | group | name | source
 7146 | Movies | OuterSphere (1080p) | iptv-org US
 7147 | Movies | OUTflix Movies | Samsung TV Plus
 7148 | Movies | Paramount Movie Channel | Pluto TV
-7149 | Movies | Paramount Network (United States) (1080p) | iptv-org US
 7150 | Movies | Paramount+ Picks | Pluto TV
 7151 | Movies | Pluto TV Action | Pluto TV
 7152 | Movies | Pluto TV Action Drama | Pluto TV
@@ -820,10 +797,7 @@ number | group | name | source
 7182 | Movies | SPARK TV | Roku Channel
 7183 | Movies | Star Action (720p) | iptv-org US
 7184 | Movies | Star Trek: The Motion Pictures | Pluto TV
-7185 | Movies | Starz Comedy (1080p) | iptv-org US
-7186 | Movies | Starz West (720p) | iptv-org US
 7187 | Movies | Stories by AMC | Samsung TV Plus
-7189 | Movies | SYFY (720p) | iptv-org US
 7190 | Movies | TCM (720p) [Geo-blocked] | iptv-org US
 7191 | Movies | TCM West (720p) [Geo-blocked] | iptv-org US
 7194 | Movies | Tribeca Channel (1080p) [Geo-blocked] | iptv-org US
@@ -1037,7 +1011,6 @@ number | group | name | source
 12020 | Crime & Mystery | Court TV (1080p) | iptv-org US
 12021 | Crime & Mystery | Court TV Legendary Trials | Plex
 12022 | Crime & Mystery | Crime & Justice | Plex
-12023 | Crime & Mystery | Crime + Investigation (720p) | iptv-org US
 12024 | Crime & Mystery | Crime 24/7 | Samsung TV Plus
 12025 | Crime & Mystery | Crime 360 (1080p) | iptv-org US
 12026 | Crime & Mystery | Crime Cults Killers | Tubi
@@ -1065,6 +1038,7 @@ number | group | name | source
 12048 | Crime & Mystery | Hallmark Mystery (720p) [Geo-blocked] | iptv-org US
 12049 | Crime & Mystery | I (Almost) Got Away With It | Pluto TV
 12050 | Crime & Mystery | I Survived… | Samsung TV Plus
+12051 | Crime & Mystery | Investigation Discovery (United States) (1080p) [Geo-blocked] | iptv-org US
 12052 | Crime & Mystery | ION Mystery | Samsung TV Plus
 12054 | Crime & Mystery | Judge Nosey (1080p) | iptv-org US
 12056 | Crime & Mystery | Justice Central.TV (720p) | iptv-org US
@@ -1206,12 +1180,10 @@ number | group | name | source
 13090 | Reality | Teen Mom | Pluto TV
 13091 | Reality | Top Gear | Pluto TV
 13092 | Reality | Tough Jobs | Pluto TV
-13093 | Reality | truTV (720p) | iptv-org US
 13094 | Reality | truTV West (720p) [Geo-blocked] | iptv-org US
 13095 | Reality | Untold Stories of the ER | Samsung TV Plus
 13096 | Reality | UnXplained Zone | Pluto TV
 13097 | Reality | Warner Bros. TV Say Yes to the Dress | Pluto TV
-13098 | Reality | We TV (1080p) | iptv-org US
 13099 | Reality | Wicked Tuna | Pluto TV
 13100 | Reality | Wipeout Xtra | Samsung TV Plus
 13101 | Reality | Wipeout Xtra (1080p) | iptv-org US
@@ -1256,10 +1228,8 @@ number | group | name | source
 14038 | Sci-Fi & Fantasy | Paranormal Chronicles | Roku Channel
 15000 | Documentary | 60 Minutes | Pluto TV
 15001 | Documentary | Alone By History | Samsung TV Plus
-15002 | Documentary | American Heroes Channel (720p) | iptv-org US
 15003 | Documentary | American Pickers by History | Samsung TV Plus
 15004 | Documentary | American Pickers Plus by History | Pluto TV
-15005 | Documentary | Animal Planet (United States) (720p) | iptv-org US
 15006 | Documentary | Astro Ciencia | Roku Channel
 15007 | Documentary | Atlas (480p) | iptv-org US
 15008 | Documentary | Autentic History (1080p) | iptv-org US
@@ -1270,7 +1240,6 @@ number | group | name | source
 15013 | Documentary | Beyond Belief | Plex
 15014 | Documentary | Brave Wilderness | Samsung TV Plus
 15015 | Documentary | BritBox Mysteries (1080p) | iptv-org US
-15016 | Documentary | BUTV10 (1080p) [Not 24/7] | iptv-org US
 15017 | Documentary | Cloudflare TV (720p) | iptv-org US
 15018 | Documentary | Create (1080p) | iptv-org US
 15019 | Documentary | Curiosity NOW | Plex
@@ -1279,6 +1248,7 @@ number | group | name | source
 15022 | Documentary | Danger TV (1080p) | iptv-org US
 15023 | Documentary | DerryTV 23 (720p) | iptv-org US
 15024 | Documentary | Dinos 24/7 | Pluto TV
+15025 | Documentary | Discovery Channel (United States) (1080p) [Geo-blocked] | iptv-org US
 15026 | Documentary | Discovery Turbo (United States) (720p) | iptv-org US
 15027 | Documentary | DKN (1080p) | iptv-org US
 15028 | Documentary | Documentary+ (1080p) | iptv-org US
@@ -1288,6 +1258,7 @@ number | group | name | source
 15032 | Documentary | EarthXtra | Plex
 15033 | Documentary | Extreme Jobs | Plex
 15035 | Documentary | History & Warfare Now | Samsung TV Plus
+15036 | Documentary | History (United States) (720p) | iptv-org US
 15037 | Documentary | History 365 | Samsung TV Plus
 15039 | Documentary | History Hit (1080p) | iptv-org US
 15041 | Documentary | How To | Pluto TV
@@ -1315,11 +1286,11 @@ number | group | name | source
 15065 | Documentary | MythBusters | Pluto TV
 15066 | Documentary | Nashua ETV (720p) | iptv-org US
 15067 | Documentary | Natick Education Channel (720p) | iptv-org US
+15068 | Documentary | National Geographic (United States) (720p) | iptv-org US
 15069 | Documentary | Nature Moments | Roku Channel
 15070 | Documentary | Naturescape | Pluto TV
 15071 | Documentary | The Nest (1080p) | iptv-org US
 15072 | Documentary | Pawn Stars Plus by History | Pluto TV
-15073 | Documentary | Payam Javan TV (720p) [Not 24/7] | iptv-org US
 15074 | Documentary | PBS (1080p) [Geo-blocked] | iptv-org US
 15075 | Documentary | PBS Antiques Roadshow | Pluto TV
 15076 | Documentary | PBS Antiques Roadshow (1080p) | iptv-org US
@@ -1354,7 +1325,6 @@ number | group | name | source
 15110 | Documentary | UCTV (720p) [Not 24/7] | iptv-org US
 15111 | Documentary | Unidentified (1080p) | iptv-org US
 15112 | Documentary | Universe: Mysteries Solved | Samsung TV Plus
-15113 | Documentary | VICE TV (1080p) | iptv-org US
 15114 | Documentary | WildEarth | Samsung TV Plus
 15115 | Documentary | World Channel (1080p) | iptv-org US
 15116 | Documentary | Xplore | Samsung TV Plus
@@ -1416,13 +1386,11 @@ number | group | name | source
 16048 | Lifestyle | CJ ENM K-Food & Travel | Samsung TV Plus
 16049 | Lifestyle | Classic Car Auctions | Plex
 16050 | Lifestyle | Come Dine With Me | Plex
-16051 | Lifestyle | Cooking Channel (720p) | iptv-org US
 16052 | Lifestyle | Cooking Panda (576p) | iptv-org US
 16053 | Lifestyle | CraftsyTV | Samsung TV Plus
 16054 | Lifestyle | Delicious Eats by Food Network | Pluto TV
 16055 | Lifestyle | The Design Network | Samsung TV Plus
 16056 | Lifestyle | The Design Network (1080p) | iptv-org US
-16057 | Lifestyle | Destination America (720p) | iptv-org US
 16058 | Lifestyle | Diya TV (1080p) | iptv-org US
 16060 | Lifestyle | The Doctors (720p) [Geo-blocked] | iptv-org US
 16061 | Lifestyle | Dog the Bounty Hunter (1080p) | iptv-org US
@@ -1430,10 +1398,10 @@ number | group | name | source
 16063 | Lifestyle | Emeril Lagasse Channel | Samsung TV Plus
 16064 | Lifestyle | Epic Gardening TV | Samsung TV Plus
 16065 | Lifestyle | FashionTV | Plex
+16066 | Lifestyle | Fierro a Fondo TV (1080p) | iptv-org US
 16067 | Lifestyle | Fifth Gear (UK) | Plex
 16068 | Lifestyle | Flipping Nation | Samsung TV Plus
 16069 | Lifestyle | FloRacing 24/7 | Roku Channel
-16070 | Lifestyle | Food Network (United States) (720p) | iptv-org US
 16071 | Lifestyle | Fun Roads (720p) | iptv-org US
 16073 | Lifestyle | Global Fashion Channel (1080p) | iptv-org US
 16074 | Lifestyle | Gordon Ramsay | Tubi
@@ -1465,9 +1433,7 @@ number | group | name | source
 16104 | Lifestyle | No Reservations | Pluto TV
 16106 | Lifestyle | Outdoor America (1080p) | iptv-org US
 16107 | Lifestyle | Outdoor Channel (1080p) | iptv-org US
-16108 | Lifestyle | Outdoor Channel HD (720p) | iptv-org US
 16109 | Lifestyle | Outside TV (1080p) | iptv-org US
-16110 | Lifestyle | OWN (720p) | iptv-org US
 16111 | Lifestyle | Palm Beaches TV (720p) | iptv-org US
 16112 | Lifestyle | Pets.TV (720p) | iptv-org US
 16113 | Lifestyle | Plated | Samsung TV Plus
@@ -1476,7 +1442,6 @@ number | group | name | source
 16116 | Lifestyle | Pocono Television Network (1080p) | iptv-org US
 16117 | Lifestyle | PowerNation TV (1080p) | iptv-org US
 16118 | Lifestyle | Property Brothers | Pluto TV
-16119 | Lifestyle | Pursuit Channel (720p) | iptv-org US
 16120 | Lifestyle | PursuitUP (1080p) | iptv-org US
 16121 | Lifestyle | Rachael Ray Presents | Samsung TV Plus
 16122 | Lifestyle | Recipe.TV (720p) | iptv-org US
@@ -1515,7 +1480,6 @@ number | group | name | source
 17001 | Game Shows | Best of Dr. Phil | Pluto TV
 17002 | Game Shows | Beyond the Gates | Pluto TV
 17003 | Game Shows | BUZZR | Pluto TV
-17004 | Game Shows | Buzzr (1080p) | iptv-org US
 17005 | Game Shows | Celebrity Name Game | Samsung TV Plus
 17006 | Game Shows | Celebrity Name Game (1080p) [Geo-blocked] | iptv-org US
 17007 | Game Shows | Classic Family Feud | Plex
@@ -1566,12 +1530,12 @@ number | group | name | source
 18016 | Kids & Family | Beyblade | Plex
 18017 | Kids & Family | Black Family Sitcoms | Pluto TV
 18018 | Kids & Family | Blippi | Samsung TV Plus
-18019 | Kids & Family | Boomerang (United States) (720p) | iptv-org US
 18020 | Kids & Family | Brat TV (1080p) | iptv-org US
 18021 | Kids & Family | Braxton Family Values | Roku Channel
 18022 | Kids & Family | Caillou | Samsung TV Plus
 18023 | Kids & Family | Camp Spoopy | Plex
 18024 | Kids & Family | Camp Spoopy (576p) | iptv-org US
+18025 | Kids & Family | Cartoon Network (United States) West (1080p) [Geo-blocked] | iptv-org US
 18026 | Kids & Family | Disney Channel (United States) (720p) | iptv-org US
 18027 | Kids & Family | Disney XD (United States) (720p) | iptv-org US
 18028 | Kids & Family | Dora TV | Pluto TV
@@ -1643,12 +1607,10 @@ number | group | name | source
 18096 | Kids & Family | Ryan and Friends (1080p) | iptv-org US
 18097 | Kids & Family | Sensical Jr | Samsung TV Plus
 18098 | Kids & Family | Sensical Makers | Samsung TV Plus
-18099 | Kids & Family | Showtime Family Zone (720p) | iptv-org US
 18100 | Kids & Family | Skwad Play (1080p) | iptv-org US
 18101 | Kids & Family | Slugterra | Samsung TV Plus
 18102 | Kids & Family | Smurf TV (480p) | iptv-org US
 18103 | Kids & Family | Sonic The Hedgehog | Samsung TV Plus
-18104 | Kids & Family | Starz Kids & Family (1080p) | iptv-org US
 18105 | Kids & Family | Strawberry Shortcake | Samsung TV Plus
 18106 | Kids & Family | Strawberry Shortcake and Friends | Pluto TV
 18107 | Kids & Family | Super Simple Songs | Roku Channel
@@ -1669,6 +1631,7 @@ number | group | name | source
 18123 | Kids & Family | Y2Kids TV | Pluto TV
 18124 | Kids & Family | ZooMoo | Samsung TV Plus
 18127 | Kids & Family | Cartoon Network (United States) [Not 24/7;Geo-blocked] | iptv-org US
+18128 | Kids & Family | Nick Jr. (United States) (720p) | iptv-org US
 18129 | Kids & Family | Nicktoons (United States) (720p) | iptv-org US
 18131 | Kids & Family | PBS Retro (1080p) [Geo-blocked] | iptv-org US
 19000 | Anime & Gaming | Adult Swim West [Not 24/7;Geo-blocked] | iptv-org US
@@ -1728,7 +1691,6 @@ number | group | name | source
 20010 | Music | Classic Rock | Plex
 20011 | Music | Classica | Pluto TV
 20012 | Music | CMC-USA Country Music Channel (720p) | iptv-org US
-20013 | Music | CMT (720p) | iptv-org US
 20014 | Music | CMT Equal Play | Pluto TV
 20015 | Music | CMTV (720p) | iptv-org US
 20016 | Music | The Country Network (1080p) | iptv-org US
@@ -1737,7 +1699,6 @@ number | group | name | source
 20019 | Music | EBS Musika (720p) | iptv-org US
 20020 | Music | Euro Hits | Plex
 20021 | Music | FilmRise Music | Plex
-20022 | Music | Fuse (1080p) | iptv-org US
 20024 | Music | Growing Up Hip Hop WeTV | Roku Channel
 20025 | Music | High Vision TV (1080p) [Not 24/7] | iptv-org US
 20027 | Music | iHeartCountry Classics | Roku Channel
@@ -1746,8 +1707,6 @@ number | group | name | source
 20030 | Music | LIVExLIVE (1080p) | iptv-org US
 20031 | Music | Love & Hip Hop | Pluto TV
 20032 | Music | MBC America (1080p) | iptv-org US
-20033 | Music | Metaleitor TV | iptv-org US
-20035 | Music | MTV (United States) (1080p) | iptv-org US
 20036 | Music | MTV Biggest Pop | Pluto TV
 20038 | Music | MTV Pluto TV | Pluto TV
 20039 | Music | MTV Spankin' New | Pluto TV
@@ -1757,7 +1716,6 @@ number | group | name | source
 20043 | Music | Qello Concerts | Pluto TV
 20044 | Music | Qello Concerts by Stingray | Samsung TV Plus
 20045 | Music | Radio y Television Marti (720p) | iptv-org US
-20046 | Music | Revolt (720p) | iptv-org US
 20048 | Music | SMTOWN | Samsung TV Plus
 20049 | Music | Stingray Cityscapes | Roku Channel
 20050 | Music | Stingray Classic Rock | Samsung TV Plus
@@ -1795,7 +1753,6 @@ number | group | name | source
 20088 | Music | Vevo R&B (1080p) | iptv-org US
 20089 | Music | Vevo Rock | Pluto TV
 20090 | Music | Vevo True School Hip-Hop | Pluto TV
-20091 | Music | VH1 (1080p) | iptv-org US
 20092 | Music | VH1 Queens of Reality | Pluto TV
 20093 | Music | Video Mix TV (1080p) | iptv-org US
 20094 | Music | XITE 80s Flashback | Samsung TV Plus
@@ -2038,13 +1995,7 @@ number | group | name | source
 23087 | Spanish | FreeTV Acción | Plex
 23088 | Spanish | FreeTV Asia | Roku Channel
 23089 | Spanish | FreeTV Banda | Plex
-23090 | Spanish | FreeTV Clásico | Plex
-23091 | Spanish | FreeTV Drama | Plex
 23092 | Spanish | FreeTV Estelar | Samsung TV Plus
-23093 | Spanish | FreeTV Hits | Plex
-23094 | Spanish | FreeTV Horror | Plex
-23095 | Spanish | FreeTV Live | Plex
-23096 | Spanish | FreeTV Sureño | Plex
 23097 | Spanish | FreeTV Terror | Roku Channel
 23098 | Spanish | Galanes | Samsung TV Plus
 23099 | Spanish | Galavision East HD (1080p) [Geo-blocked] | iptv-org US
@@ -2059,6 +2010,7 @@ number | group | name | source
 23113 | Spanish | La novia de Estambul | Pluto TV
 23114 | Spanish | Las 3 Marías | Samsung TV Plus
 23115 | Spanish | Latino Channel TV (1080p) | iptv-org US
+23116 | Spanish | Latinus | Roku Channel
 23118 | Spanish | LATV (1080p) [Geo-blocked] | iptv-org US
 23119 | Spanish | Lifetime Cine Selecto | Samsung TV Plus
 23120 | Spanish | LLBN TV Latino (480p) | iptv-org US
@@ -2143,6 +2095,9 @@ number | group | name | source
 23208 | Spanish | RCN Noticias | Roku Channel
 23209 | Spanish | Runtime Español | Roku Channel
 23210 | Spanish | Todo Novelas Más Pasiones | Roku Channel
+23217 | Spanish | FreeTV Clásico | Roku Channel
+23218 | Spanish | FreeTV Hits | Roku Channel
+23219 | Spanish | FreeTV Sureño | Roku Channel
 23220 | Spanish | Love Nature en Espanol (1080p) | iptv-org US
 23221 | Spanish | 123GO! Español | Roku Channel
 23222 | Spanish | BabyFirst Spanish (1080p) | iptv-org US
@@ -2170,7 +2125,6 @@ number | group | name | source
 24020 | Culture & Heritage | Billboard TV | Samsung TV Plus
 24021 | Culture & Heritage | Biography: The Icons | Samsung TV Plus
 24022 | Culture & Heritage | BlackPix | Plex
-24023 | Culture & Heritage | Bounce (720p) | iptv-org US
 24024 | Culture & Heritage | Bounce XL | Pluto TV
 24025 | Culture & Heritage | Bounce XL (1080p) | iptv-org US
 24026 | Culture & Heritage | BuzzFeed Celeb | Samsung TV Plus
@@ -2179,7 +2133,6 @@ number | group | name | source
 24029 | Culture & Heritage | Divorce Court | Samsung TV Plus
 24030 | Culture & Heritage | Documentary+ | Samsung TV Plus
 24031 | Culture & Heritage | Dr. Phil Envoy | Samsung TV Plus
-24032 | Culture & Heritage | Flowers TV USA (396p) | iptv-org US
 24033 | Culture & Heritage | FNX (1080p) | iptv-org US
 24034 | Culture & Heritage | FOX SOUL | Samsung TV Plus
 24035 | Culture & Heritage | Fox Soul (1080p) | iptv-org US
@@ -2255,15 +2208,12 @@ number | group | name | source
 26018 | Entertainment | Creator Television | Plex
 26019 | Entertainment | CTV (United States) (480p) | iptv-org US
 26021 | Entertainment | Dove | Plex
-26022 | Entertainment | E! (United States) East (1080p) | iptv-org US
 26024 | Entertainment | Electric Now (720p) | iptv-org US
 26026 | Entertainment | Entertains | Plex
 26027 | Entertainment | ES.TV (720p) | iptv-org US
 26028 | Entertainment | ET | Pluto TV
 26029 | Entertainment | Fast TV (720p) | iptv-org US
 26031 | Entertainment | FEVA TV | Plex
-26032 | Entertainment | FrightFlix | Plex
-26033 | Entertainment | FUEL TV | Plex
 26034 | Entertainment | Galxy TV (720p) | iptv-org US
 26042 | Entertainment | GlobalWorldTV (720p) | iptv-org US
 26048 | Entertainment | Great Entertainment Television (720p) | iptv-org US
@@ -2287,7 +2237,6 @@ number | group | name | source
 26123 | Entertainment | Payam-e-Afghan TV (480p) [Not 24/7] | iptv-org US
 26124 | Entertainment | PCT Channel 26 (720p) | iptv-org US
 26125 | Entertainment | PCT Channel 27 (720p) | iptv-org US
-26126 | Entertainment | PCTV 28 (480p) | iptv-org US
 26128 | Entertainment | PhillyCAM (720p) | iptv-org US
 26132 | Entertainment | PixL TV (720p) | iptv-org US
 26146 | Entertainment | Roar (1080p) | iptv-org US
@@ -2298,13 +2247,13 @@ number | group | name | source
 26154 | Entertainment | RVTV Prime (720p) | iptv-org US
 26155 | Entertainment | RVTV Voices (720p) | iptv-org US
 26160 | Entertainment | Scottsdale Channel 11 | iptv-org US
-26163 | Entertainment | SFGovTV2 (720p) | iptv-org US
 26164 | Entertainment | SGTN-49 (720p) | iptv-org US
 26166 | Entertainment | Shout! Factory TV (1080p) | iptv-org US
 26170 | Entertainment | SMCTV Channel 25 (720p) | iptv-org US
 26184 | Entertainment | TBS (720p) [Geo-blocked] | iptv-org US
 26185 | Entertainment | TBS West (720p) [Geo-blocked] | iptv-org US
 26189 | Entertainment | Tin TV (720p) | iptv-org US
+26191 | Entertainment | TNT (United States) (720p) [Geo-blocked] | iptv-org US
 26192 | Entertainment | TNT (United States) West (720p) [Geo-blocked] | iptv-org US
 26195 | Entertainment | A Touch of Frost | Plex
 26197 | Entertainment | TV Panou (720p) [Not 24/7] | iptv-org US
@@ -2327,6 +2276,7 @@ number | group | name | source
 26239 | Entertainment | Ryan Trahan | Roku Channel
 26240 | Entertainment | Unspeakable | Roku Channel
 26248 | Entertainment | TV Quisqueya (720p) | iptv-org US
+26249 | Entertainment | PBC Tapesh TV (720p) | iptv-org US
 26250 | Entertainment | Ideas en 5 Minutos | Roku Channel
 26251 | Entertainment | On Patrol: Live (1080p) | iptv-org US
 26253 | Entertainment | Zona Investigación | Roku Channel
